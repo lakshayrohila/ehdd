@@ -1,4 +1,4 @@
-/*	This program is to eject and shut down a ejectable storage device.
+/*	This program is to eject and shut down an ejectable storage device.
  *  It can be given any name on compile time and any version as well (check next oneline comment under '#ifndef VERSION').
  *  This program needs 'eject' command, 'udiskctl' command (udisks2) and 'root access' (sudo) as well
 */
