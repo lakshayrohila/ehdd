@@ -171,7 +171,7 @@ Option                Meaning\n\
  -V, --versbose        Do not suppress the output of \033[1meject\033[0m and \033[1mudisksctl\033[0m.\n\
  -E, --ejectonly       Only eject the device.\n\
  -S, --shutdownonly    Only shutdown the device.\n\
- --byname              Same as %s \033[3mdevice\033[0m.\n\
+ --byname              Same as ehdd \033[3mdevice\033[0m.\n\
  --bylabel             Eject and/or shutdown device by name. Same as ejecting /dev/disk/by-label/\033[3mdevice\033[0m.\n\
  --byuuid              Eject and/or shutdown device by uuid. Same as ejecting /dev/disk/by-uuid/\033[3mdevice\033[0m.\n\
 (NOTE: No options can be mixed except that -V, -E and -S can be used with options starting with --by).\n");
