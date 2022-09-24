@@ -1,6 +1,5 @@
-/*	This program is to eject and shut down an ejectable storage device.
- *  It can be given any name on compile time and any version as well (check next oneline comment under '#ifndef VERSION').
- *  This program needs 'eject' command, 'udiskctl' command (udisks2) and 'root access' (sudo) as well
+/*
+ * This program is to eject and shut down an ejectable storage device. Read 'README.md' for more information.
 */
 
 #include <stdio.h>
@@ -165,7 +164,7 @@ int main(int argc, char *argv[]) {
     if(proc_to_do == 0) {
         // print help message and exit with return code 0
         checkverbose(verbose, "--help");
-        printf("Usage: sudo %s [OPTIONS] or [DEVICE NAME]\n\n\
+        printf("Usage: sudo ehdd [OPTIONS] or [DEVICE NAME]\n\n\
 Option                Meaning\n\
  -h, --help            Show this text.\n\
  -v, --version         Provide version information.\n\
@@ -173,14 +172,14 @@ Option                Meaning\n\
  -E, --ejectonly       Only eject the device.\n\
  -S, --shutdownonly    Only shutdown the device.\n\
  --byname              Same as %s \033[3mdevice\033[0m.\n\
- --bylabel             Eject and/or shutdown device by name. Same as %s /dev/disk/by-label/\033[3mdevice\033[0m.\n\
- --byuuid              Eject and/or shutdown device by uuid. Same as %s /dev/disk/by-uuid/\033[3mdevice\033[0m.\n\
-(NOTE: No options can be mixed except that -V, -E and -S can be used with options starting with --by).\n", argv[0], argv[0], argv[0], argv[0]);
+ --bylabel             Eject and/or shutdown device by name. Same as ejecting /dev/disk/by-label/\033[3mdevice\033[0m.\n\
+ --byuuid              Eject and/or shutdown device by uuid. Same as ejecting /dev/disk/by-uuid/\033[3mdevice\033[0m.\n\
+(NOTE: No options can be mixed except that -V, -E and -S can be used with options starting with --by).\n");
             return 0;
     } else if(proc_to_do == 4) {
         // print version info
         checkverbose(verbose, "--version");
-        printf("%s version %s.\n", argv[0], VERSION);
+        printf("ehdd version %s.\n", VERSION);
         return 0;
     } else if(proc_to_do == 1) {
         device_path = malloc(20);
