@@ -1,6 +1,6 @@
 ## Help (as returned by ehdd --help):
 ```
-Usage: sudo ehdd [OPTIONS] or [DEVICE NAME]
+Usage: sudo ehdd [OPTIONS] or [DEVICE NAMES]
 
 Option                Meaning
  -h, --help            Show this text.
