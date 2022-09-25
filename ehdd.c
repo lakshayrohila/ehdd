@@ -45,7 +45,7 @@ char *get_string_todo() {
 #include "parsecliflags.h"
 
 void print_help() {
-    printf("Usage: sudo ehdd [OPTIONS] or [DEVICE NAME]\n\n\
+    printf("Usage: sudo ehdd [OPTIONS] or [DEVICE NAMES]\n\n\
 Option                Meaning\n\
  -h, --help            Show this text.\n\
  -v, --version         Provide version information.\n\
