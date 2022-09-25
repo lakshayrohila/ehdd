@@ -6,8 +6,8 @@ Perform these steps to install **ehdd**-
 
 Run these commands in the terminal-
 
-3. ``` $ tar -xvzf ehdd-*.zip```
-(replace `ehdd-*.zip` with the name of the file that is downloaded in **Step 1**).
+3. ``` $ tar -xvzf ehdd-*.tar.gz```
+(replace `ehdd-*.tar.gz` with the name of the file that is downloaded in **Step 1**).
 4. ``` $ cd ehdd-*/```
 (replace `ehdd-*/` with the name of the directory that has been created in **Step 3**).
 5. ``` $ make```

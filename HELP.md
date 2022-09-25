@@ -11,5 +11,4 @@ Option                Meaning
  --byname              Same as ./ehdd device.
  --bylabel             Eject and/or shutdown device by name. Same as ejecting /dev/disk/by-label/device.
  --byuuid              Eject and/or shutdown device by uuid. Same as ejecting /dev/disk/by-uuid/device.
-(NOTE: No options can be mixed except that -V, -E and -S can be used with options starting with --by).
 ```
