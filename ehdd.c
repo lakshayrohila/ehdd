@@ -49,7 +49,7 @@ void print_help() {
 Option                Meaning\n\
  -h, --help            Show this text.\n\
  -v, --version         Provide version information.\n\
- -V, --versbose        Do not suppress the output of \033[1meject\033[0m and \033[1mudisksctl\033[0m.\n\
+ -V, --verbose         Do not suppress the output of \033[1meject\033[0m and \033[1mudisksctl\033[0m.\n\
  -E, --ejectonly       Only eject the device.\n\
  -S, --shutdownonly    Only shutdown the device.\n\
  --byname              Same as ehdd \033[3mdevice\033[0m.\n\
