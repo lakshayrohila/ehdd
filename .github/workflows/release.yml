@@ -1,0 +1,37 @@
+name: release
+
+on:
+  workflow_dispatch:
+    inputs:
+      version:
+        description: 'Version'
+        required: true
+        default: '0.0'
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+    - name: Setup Build Directory
+      run: |
+        mkdir -p ehdd-v${{ github.event.inputs.version }}-x86_64/usr/bin/
+        cd ehdd-v${{ github.event.inputs.version }}-x86_64
+        printf "#\41/bin/sh\ncp ./usr/bin/ehdd /usr/bin/ehdd\n" > install.sh
+        chmod +x ./install.sh
+        cd ..
+    - name: Compile
+      run: |
+        gcc -o ehdd-v${{ github.event.inputs.version }}-x86_64/usr/bin/ehdd ehdd.c -Wall -Wextra -Werror
+    - name: Compress
+      run: |
+        tar -czvf ehdd-v${{ github.event.inputs.version }}-x86_64.tar.gz ehdd-v${{ github.event.inputs.version }}-x86_64/
+    - name: Upload Release
+      uses: softprops/action-gh-release@v1
+      with:
+        name: ehdd-v${{ github.event.inputs.version }}
+        tag_name: v${{ github.event.inputs.version }}
+        fail_on_unmatched_files: true
+        files: ehdd-v${{ github.event.inputs.version }}-x86_64.tar.gz
+        draft: true
+        prerelease: false
