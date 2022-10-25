@@ -12,7 +12,7 @@ enum {
     DO_NOTHING, EJECT_BYLABEL, EJECT_BYUUID, EJECT_BYNAME
 } todo;
 
-#define VERSION "\033[1m0.2\033[0m"
+#define VERSION "undefined"
 
 // returns return code of the command
 int pretcode(const char *cmd) {

@@ -13,6 +13,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v3
+    - name: Set version
+        sed -i 's/#define VERSION "undefined"/#define VERSION "${{ github.event.inputs.version }}"/g' ehdd.c
     - name: Setup Build Directory
       run: |
         mkdir -p ehdd-v${{ github.event.inputs.version }}-x86_64/usr/bin/
