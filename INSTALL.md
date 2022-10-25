@@ -12,7 +12,7 @@
 
 Perform these steps to install **ehdd** from its **.tar.gz**-
 
-1. Get the latest `ehdd` from [Releases page](https://github.com/lakshayrohila/ehdd/releases). It can be found as **Assets > ehdd-v*version*-x86_64.tar.gz**.
+1. Get the latest `ehdd` from [Releases page](https://github.com/lakshayrohila/ehdd/releases). It can be found as **Assets > ehdd-v*version*-x86_64.tar.gz** (here **x86_64** means **64-bit**, currently which is only supported for this method of installation. Follow **Method-2** for installing **ehdd** on **32-bit** devices).
 
 2. Open up a terminal in the directory in which file was downloaded in **Step 1**.
    
@@ -43,7 +43,7 @@ Perform these steps to install **ehdd** by compiling it-
    - `$ make`
    - `$ make install`
 
-This would install `ehdd` to `/usr/bin`.
+This would install `ehdd` to `/usr/bin`. Note that with this method of installation, the version set would default to **undefined**. To change this behavior, set custom version in file **ehdd.c**, line **15** (saying `#define VERSION "undefined"`).
 
 To uninstall `ehdd`, read [UNINSTALL.md](./UNINSTALL.md).
 

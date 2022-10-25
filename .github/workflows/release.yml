@@ -21,7 +21,9 @@ jobs:
         mkdir -p ehdd-v${{ github.event.inputs.version }}-x86_64/usr/bin/
         cd ehdd-v${{ github.event.inputs.version }}-x86_64
         printf "#\41/bin/sh\ncp ./usr/bin/ehdd /usr/bin/ehdd\n" > install.sh
+        printf "#\41/bin/sh\nrm /usr/bin/ehdd -f\n" > uninstall.sh
         chmod +x ./install.sh
+        chmod +x ./uninstall.sh
         cd ..
     - name: Compile
       run: |
