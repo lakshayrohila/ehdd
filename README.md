@@ -5,7 +5,7 @@ This program can be used for ejecting and shutdowning an ejectable storage devic
 Read [Installation guide](./INSTALL.md) for installation.
 
 ## Dependencies:
-This program needs ```eject```, ```udiskctl``` command (udisks2) and 'root access' (sudo), to work. ```gcc``` is also needed for complition of the program.
+This program needs ```eject```, ```udiskctl``` command (udisks2) and 'root access' (sudo), to work. ```gcc``` is also needed if you want to compile the program.
 
 ## Uninstallation:
 Read [Uninstallation guide](./UNINSTALL.md) for uninstallation.
