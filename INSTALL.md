@@ -12,7 +12,7 @@
 
 Perform these steps to install **ehdd** from its **.tar.gz**-
 
-1. Get the latest `ehdd` from [Releases page](https://github.com/lakshayrohila/ehdd/releases). It can be found as **Assets > ehdd-v*version*-x86_64.tar.gz** (here **x86_64** means **64-bit**, currently which is only supported for this method of installation. Follow **Method-2** for installing **ehdd** on **32-bit** devices).
+1. Get the latest `ehdd` from [Releases page](https://github.com/lakshayrohila/ehdd/releases). It can be found as **Assets > ehdd-v*version*-x86_64.tar.gz** (here **x86_64** means **64-bit**. If you want to install ehdd on a **32-bit** machine, then download **ehdd-v*version*-x86.tar.gz**).
 
 2. Open up a terminal in the directory in which file was downloaded in **Step 1**.
    
