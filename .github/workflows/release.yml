@@ -14,6 +14,7 @@ jobs:
     steps:
     - uses: actions/checkout@v3
     - name: Set version
+      run: |
         sed -i 's/#define VERSION "undefined"/#define VERSION "${{ github.event.inputs.version }}"/g' ehdd.c
     - name: Setup Build Directory
       run: |
