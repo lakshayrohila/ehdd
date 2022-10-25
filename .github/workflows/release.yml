@@ -13,10 +13,15 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v3
+    - name: Setup C Compiler
+      uses: rlalik/setup-cpp-compiler@v1.1
+      with:
+          os-version: ubuntu-latest
+          compiler: gcc-multilib
     - name: Set version
       run: |
         sed -i 's/#define VERSION "undefined"/#define VERSION "${{ github.event.inputs.version }}"/g' ehdd.c
-    - name: Setup Build Directory
+    - name: Setup Build Directories
       run: |
         mkdir -p ehdd-v${{ github.event.inputs.version }}-x86_64/usr/bin/
         cd ehdd-v${{ github.event.inputs.version }}-x86_64
@@ -25,18 +30,29 @@ jobs:
         chmod +x ./install.sh
         chmod +x ./uninstall.sh
         cd ..
+        
+        mkdir -p ehdd-v${{ github.event.inputs.version }}-x86/usr/bin/
+        cd ehdd-v${{ github.event.inputs.version }}-x86
+        printf "#\41/bin/sh\ncp ./usr/bin/ehdd /usr/bin/ehdd\n" > install.sh
+        printf "#\41/bin/sh\nrm /usr/bin/ehdd -f\n" > uninstall.sh
+        chmod +x ./install.sh
+        chmod +x ./uninstall.sh
+        cd ..
     - name: Compile
       run: |
-        gcc -o ehdd-v${{ github.event.inputs.version }}-x86_64/usr/bin/ehdd ehdd.c -Wall -Wextra -Werror
+        gcc -m64 -o ehdd-v${{ github.event.inputs.version }}-x86_64/usr/bin/ehdd ehdd.c -Wall -Wextra -Werror
+        gcc -m32 -o ehdd-v${{ github.event.inputs.version }}-x86/usr/bin/ehdd ehdd.c -Wall -Wextra -Werror
     - name: Compress
       run: |
         tar -czvf ehdd-v${{ github.event.inputs.version }}-x86_64.tar.gz ehdd-v${{ github.event.inputs.version }}-x86_64/
+        tar -czvf ehdd-v${{ github.event.inputs.version }}-x86.tar.gz ehdd-v${{ github.event.inputs.version }}-x86/
     - name: Upload Release
       uses: softprops/action-gh-release@v1
       with:
         name: ehdd-v${{ github.event.inputs.version }}
         tag_name: v${{ github.event.inputs.version }}
         fail_on_unmatched_files: true
-        files: ehdd-v${{ github.event.inputs.version }}-x86_64.tar.gz
+        files: |
+          *.tar.gz
         draft: true
         prerelease: false
