@@ -43,8 +43,19 @@ Perform these steps to install **ehdd** by compiling it-
    - `$ make`
    - `$ make install`
 
-This would install `ehdd` to `/usr/bin`. Note that with this method of installation, the version set would default to **undefined**. To change this behavior, set custom version in file **ehdd.c**, line **15** (saying `#define VERSION "undefined"`).
+This would install `ehdd` to `/usr/bin`.
 
 To uninstall `ehdd`, read [UNINSTALL.md](./UNINSTALL.md).
 
-You can also create a program ready to be used with `gdb` by replacing **Step 5** with- `$ make gdb`
+You can also create a program ready to be used with `gdb` by replacing **Step 5** with- `$ make gdb`.
+
+**NOTE**: With this method of installation, the version set would default to **undefined**. To change this behavior, set custom version in file **ehdd.c**, line **15** (saying `#define VERSION "undefined"`).
+
+So, for example if you want to set the version to say `foo`, then you would have to replace 
+```
+#define VERSION "undefined"
+```
+with
+```
+#define VERSION "foo"
+```
