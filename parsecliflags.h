@@ -46,20 +46,25 @@ int handle_hyphen_options(char *opt_str) {
 }
 
 int parsecliflags(int argc, char **argv) {
-    if(argc < 2) {
-        // device name not provided, return error code 1
-        printf("\033[0;31mError:\033[37m ");
-        printf("Device name not provided.\n");
+    if(pretcode("udisksctl >/dev/null 2>/dev/null") == 127) {
+        // udisksctl not found, return error code 1
+        printf("\033[31mError:\033[37m ");
+        printf("\033[1mudisksctl\033[0m: command not found. Install udisks2 to install udisksctl.\n");
+        return 1;
+    } else if(pretcode("eject >/dev/null 2>/dev/null") == 127) {
+        // eject not found, return error code 1
+        printf("\033[31mError:\033[37m ");
+        printf("\033[1meject\033[0m: command not found.\n");
         return 1;
     } else if(geteuid() != 0) {
         // not run as root, return error code 1
         printf("\033[31mError:\033[37m ");
         printf("\033[1m%s\033[0m not run as root. Run \033[1msudo %s\033[0m.\n", argv[0], argv[0]);
         return 1;
-    } else if(pretcode("udisksctl >/dev/null 2>/dev/null") == 127) {
-        // udisksctl not found, return error code 1
-        printf("\033[31mError:\033[37m ");
-        printf("\033[1mudisksctl\033[0m not found. Install udisks or udisks2 to install udisksctl.\n");
+    } else if(argc < 2) {
+        // device name not provided, return error code 1
+        printf("\033[0;31mError:\033[37m ");
+        printf("Device name not provided.\n");
         return 1;
     }
 
