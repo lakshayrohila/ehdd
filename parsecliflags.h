@@ -46,15 +46,15 @@ int handle_hyphen_options(char *opt_str) {
 }
 
 int parsecliflags(int argc, char **argv) {
-    if(pretcode("udisksctl >/dev/null 2>/dev/null") == 127) {
-        // udisksctl not found, return error code 1
-        printf("\033[31mError:\033[37m ");
-        printf("\033[1mudisksctl\033[0m: command not found. Install udisks2 to install udisksctl.\n");
-        return 1;
-    } else if(pretcode("eject >/dev/null 2>/dev/null") == 127) {
+    if(pretcode("eject -h >/dev/null 2>/dev/null") == 127) {
         // eject not found, return error code 1
         printf("\033[31mError:\033[37m ");
         printf("\033[1meject\033[0m: command not found.\n");
+        return 1;
+    } else if(pretcode("udisksctl help >/dev/null 2>/dev/null") == 127) {
+        // udisksctl not found, return error code 1
+        printf("\033[31mError:\033[37m ");
+        printf("\033[1mudisksctl\033[0m: command not found. Install udisks2 to install udisksctl.\n");
         return 1;
     } else if(geteuid() != 0) {
         // not run as root, return error code 1
