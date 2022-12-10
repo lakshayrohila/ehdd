@@ -54,11 +54,11 @@ Option                Meaning\n\
  -S, --shutdownonly    Only shutdown the device.\n\
  --byname              Same as ehdd \033[3mdevice\033[0m.\n\
  --bylabel             Eject and/or shutdown device by name. Same as ejecting /dev/disk/by-label/\033[3mdevice\033[0m.\n\
- --byuuid              Eject and/or shutdown device by uuid. Same as ejecting /dev/disk/by-uuid/\033[3mdevice\033[0m.\n\n");
+ --byuuid              Eject and/or shutdown device by uuid. Same as ejecting /dev/disk/by-uuid/\033[3mdevice\033[0m.\n");
 }
 
 void print_version() {
-    printf("ehdd version %s.\n\n", VERSION);
+    printf("ehdd version %s.\n", VERSION);
 }
 
 int main(int argc, char *argv[]) {
@@ -122,8 +122,8 @@ int main(int argc, char *argv[]) {
 
             if((cmd_status = pretcode(cmd)) != 0) {
                 // unable to power off device, return error code 1
-                fprintf(stderr, "\033[31mError:\033[37m ");
-                fprintf(stderr, "Unable to power off device. \033[1mudisksctl\033[0m returned with code %d. Try \
+                printf("\033[31mError:\033[37m ");
+                printf("Unable to power off device. \033[1mudisksctl\033[0m returned with code %d. Try \
 running \033[1mudisksctl power-off -b \"%s%s\"\033[0m.\n", cmd_status, device_path_prefix, device_names_list.names[i]);
                 exit_code = 1;
                 continue;
