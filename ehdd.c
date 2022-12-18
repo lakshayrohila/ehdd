@@ -71,6 +71,8 @@ int main(int argc, char *argv[]) {
 
     if(cli_flags.help) {
         print_help();
+
+        if(cli_flags.version) {printf("\n");}
     } if(cli_flags.version) {
         print_version();
     }
@@ -108,7 +110,7 @@ int main(int argc, char *argv[]) {
                 continue;
             }
 
-            printf("Device ejected succesfully. %s\n", (cli_flags.shutdownonly) ? "Now powering it off.\n" :
+            printf("Device ejected succesfully. %s\n", (!cli_flags.ejectonly) ? "Now powering it off." :
                 "It might be unsafe to remove the device unless you know that powering the device off is not necessary.");
         }
 
@@ -129,7 +131,7 @@ running \033[1mudisksctl power-off -b \"%s%s\"\033[0m.\n", cmd_status, device_pa
                 continue;
             }
 
-            printf("Device powered off succesfully. Now it is safe to be removed.");
+            printf("Device powered off succesfully. Now it is safe to be removed.\n");
         }
     }
 
