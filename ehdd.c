@@ -54,11 +54,11 @@ Option                Meaning\n\
  -S, --shutdownonly    Only shutdown the device.\n\
  --byname              Same as ehdd \033[3mdevice\033[0m.\n\
  --bylabel             Eject and/or shutdown device by name. Same as ejecting /dev/disk/by-label/\033[3mdevice\033[0m.\n\
- --byuuid              Eject and/or shutdown device by uuid. Same as ejecting /dev/disk/by-uuid/\033[3mdevice\033[0m.\n\n");
+ --byuuid              Eject and/or shutdown device by uuid. Same as ejecting /dev/disk/by-uuid/\033[3mdevice\033[0m.\n");
 }
 
 void print_version() {
-    printf("ehdd version %s.\n\n", VERSION);
+    printf("ehdd version %s.\n", VERSION);
 }
 
 struct _pr_out {
@@ -125,6 +125,8 @@ int main(int argc, char *argv[]) {
 
     if(cli_flags.help) {
         print_help();
+
+        if(cli_flags.version) {printf("\n");}
     } if(cli_flags.version) {
         print_version();
     }
@@ -171,7 +173,7 @@ int main(int argc, char *argv[]) {
                 continue;
             }
 
-            printf("Device ejected succesfully. %s\n", (cli_flags.shutdownonly) ? "Now powering it off.\n" :
+            printf("Device ejected succesfully. %s\n", (!cli_flags.ejectonly) ? "Now powering it off." :
                 "It might be unsafe to remove the device unless you know that powering the device off is not necessary.");
 
             free(pr_out.out);
@@ -202,8 +204,7 @@ int main(int argc, char *argv[]) {
                 continue;
             }
 
-            printf("Device powered off succesfully. Now it is safe to be removed.");
-
+            printf("Device powered off succesfully. Now it is safe to be removed.\n");
             free(pr_out.out);
         }
     }
