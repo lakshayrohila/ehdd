@@ -1,7 +1,8 @@
-#include <string.h>
-#include <stdlib.h>
-#include <stdio.h>
-#include <errno.h>
+#ifndef _INC_PARSECLIFLAGS_H
+#define _INC_PARSECLIFLAGS_H
+
+// this file includes functions which deal with parsing of command line options passed to the program
+// only function 'parsecliflags' is used by 'main.c'
 
 char OPTION_USED = 0;
 
@@ -75,6 +76,10 @@ int parsecliflags(int argc, char **argv) {
     todo = DO_NOTHING;
 
     device_names_list.names = (char **)malloc(1*sizeof(char *));
+    if(check_dynamic_pointer((void*)device_names_list.names)) {
+        return 1;
+    }
+
     device_names_list.len = 0;
 
     while(++current_argv < argc) {
@@ -125,14 +130,11 @@ int parsecliflags(int argc, char **argv) {
             device_names_list.len++;
 
             device_names_list.names = (char **)realloc(device_names_list.names, device_names_list.len*sizeof(char *));
-            if(!device_names_list.names) {
-                printf("\033[31mError:\033[37m ");
-                char *err = strerror(errno);
-                printf("Error while allocating memory for device names list: %s\n", err);
-                printf("\nThis error seems to be related with ehdd. \
-Please report this error at https://github.com/lakshayrohila/ehdd/issues.");
+
+            if(check_dynamic_pointer((void*)device_names_list.names)) {
                 return 1;
             }
+
             *(device_names_list.names+device_names_list.len-1) = argv[current_argv];
         }
     }
@@ -154,3 +156,5 @@ Please report this error at https://github.com/lakshayrohila/ehdd/issues.");
 
     return 0;
 }
+
+#endif
