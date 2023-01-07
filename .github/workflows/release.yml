@@ -40,8 +40,8 @@ jobs:
         cd ..
     - name: Compile
       run: |
-        gcc -m64 -o ehdd-v${{ github.event.inputs.version }}-x86_64/usr/bin/ehdd ehdd.c -Wall -Wextra -Werror
-        gcc -m32 -o ehdd-v${{ github.event.inputs.version }}-x86/usr/bin/ehdd ehdd.c -Wall -Wextra -Werror
+        gcc -m64 -o ehdd-v${{ github.event.inputs.version }}-x86_64/usr/bin/ehdd src/main.c -Wall -Wextra -Werror
+        gcc -m32 -o ehdd-v${{ github.event.inputs.version }}-x86/usr/bin/ehdd src/main.c -Wall -Wextra -Werror
     - name: Compress
       run: |
         tar -czvf ehdd-v${{ github.event.inputs.version }}-x86_64.tar.gz ehdd-v${{ github.event.inputs.version }}-x86_64/
