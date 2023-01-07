@@ -10,7 +10,7 @@ on:
 
 jobs:
   release:
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v3
     - name: Setup C Compiler
@@ -39,8 +39,8 @@ jobs:
         cd ..
     - name: Compile
       run: |
-        gcc -m64 -o ehdd-v${{ github.event.inputs.version }}-x86_64/usr/bin/ehdd src/main.c -Wall -Wextra -Werror
-        gcc -m32 -o ehdd-v${{ github.event.inputs.version }}-x86/usr/bin/ehdd src/main.c -Wall -Wextra -Werror
+        gcc -m64 -o ehdd-v${{ github.event.inputs.version }}-x86_64/usr/bin/ehdd src/main.c -Wall -Wextra -Werror -static
+        gcc -m32 -o ehdd-v${{ github.event.inputs.version }}-x86/usr/bin/ehdd src/main.c -Wall -Wextra -Werror -static
     - name: Compress
       run: |
         tar -czvf ehdd-v${{ github.event.inputs.version }}-x86_64.tar.gz ehdd-v${{ github.event.inputs.version }}-x86_64/
