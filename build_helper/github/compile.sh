@@ -6,7 +6,7 @@
 HELPER_DIR="./build_helper/github"
 BUILD_DIR_PRE="./ehdd-v$1"
 
-CC="gcc src/main.c -Wall -Wextra -Werror"
+CC="gcc-7 src/main.c -Wall -Wextra -Werror"
 
 compile() {
 	$CC -m$1 -o $BUILD_DIR_PRE-$2/usr/bin/ehdd
