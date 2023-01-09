@@ -10,7 +10,11 @@ CC="gcc src/main.c -Wall -Wextra -Werror"
 
 compile() {
 	$CC -m$1 -o $BUILD_DIR_PRE-$2/usr/bin/ehdd
-	exit $?
+
+	if [ $? -ne 0 ]; then
+		echo "Compilation failed: gcc returned with error"
+		exit 1
+	fi
 }
 
 compile "64" "x86_64"		# dynamic
