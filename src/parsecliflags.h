@@ -1,5 +1,5 @@
-#ifndef _INC_PARSECLIFLAGS_H
-#define _INC_PARSECLIFLAGS_H
+#ifndef _INC_EHDD_PARSECLIFLAGS_H
+#define _INC_EHDD_PARSECLIFLAGS_H
 
 // this file includes functions which deal with parsing of command line options passed to the program
 // only function 'parsecliflags' is used by 'main.c'

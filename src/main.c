@@ -6,6 +6,7 @@
 #include "version_def.h"
 #include "common.h"
 #include "parsecliflags.h"
+#include "device_tests.h"
 
 void print_help() {
     printf("Usage: sudo ehdd [OPTIONS] or [DEVICE NAMES]\n\n\
