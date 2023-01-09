@@ -22,29 +22,13 @@ jobs:
         sed -i 's/#define VERSION "version undefined"/#define VERSION "version ${{ github.event.inputs.version }}"/g' src/version_def.h
     - name: Setup Build Directories
       run: |
-        mkdir -p ehdd-v${{ github.event.inputs.version }}-x86_64/usr/bin/
-        cd ehdd-v${{ github.event.inputs.version }}-x86_64
-        printf "#\41/bin/sh\ncp ./usr/bin/ehdd /usr/bin/ehdd\n" > install.sh
-        printf "#\41/bin/sh\nrm /usr/bin/ehdd -f\n" > uninstall.sh
-        chmod +x ./install.sh
-        chmod +x ./uninstall.sh
-        cd ..
-        
-        mkdir -p ehdd-v${{ github.event.inputs.version }}-x86/usr/bin/
-        cd ehdd-v${{ github.event.inputs.version }}-x86
-        printf "#\41/bin/sh\ncp ./usr/bin/ehdd /usr/bin/ehdd\n" > install.sh
-        printf "#\41/bin/sh\nrm /usr/bin/ehdd -f\n" > uninstall.sh
-        chmod +x ./install.sh
-        chmod +x ./uninstall.sh
-        cd ..
+        ./build_helper/github/setup.sh ${{ github.event.inputs.version }}
     - name: Compile
       run: |
-        gcc -m64 -o ehdd-v${{ github.event.inputs.version }}-x86_64/usr/bin/ehdd src/main.c -Wall -Wextra -Werror -static
-        gcc -m32 -o ehdd-v${{ github.event.inputs.version }}-x86/usr/bin/ehdd src/main.c -Wall -Wextra -Werror -static
+        ./build_helper/github/compile.sh ${{ github.event.inputs.version }}
     - name: Compress
       run: |
-        tar -czvf ehdd-v${{ github.event.inputs.version }}-x86_64.tar.gz ehdd-v${{ github.event.inputs.version }}-x86_64/
-        tar -czvf ehdd-v${{ github.event.inputs.version }}-x86.tar.gz ehdd-v${{ github.event.inputs.version }}-x86/
+        ./build_helper/github/compress.sh ${{ github.event.inputs.version }}
     - name: Upload Release
       uses: softprops/action-gh-release@v1
       with:
