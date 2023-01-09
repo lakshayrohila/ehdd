@@ -1,0 +1,3 @@
+This directory provides the helper functions required at build-time when compiling from source (using 'make').
+
+Read comments at the start of every file to understand the function of each file.
