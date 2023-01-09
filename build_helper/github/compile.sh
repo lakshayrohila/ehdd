@@ -20,5 +20,5 @@ compile() {
 compile "64" "x86_64"		# dynamic
 compile "32" "x86"		#  ones
 
-compile "64" "x86_64-static"	# static
-compile "32" "x86-static"	#  ones
+compile "64 -static" "x86_64-static"	# static
+compile "32 -static" "x86-static"	#  ones
