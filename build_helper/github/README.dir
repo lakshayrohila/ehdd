@@ -4,3 +4,4 @@ The following scripts are called in a workflow run (in order):-
 	1. setup.sh
 	2. compile.sh
 	3. compress.sh
+	4. success_msg.sh (shows build-time gcc and glibc version)
