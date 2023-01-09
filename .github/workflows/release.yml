@@ -17,9 +17,6 @@ jobs:
       run: |
         sudo apt-get update -y
         sudo apt-get install -y gcc-7-multilib
-    - name: Set version
-      run: |
-        sed -i 's/#define VERSION "version undefined"/#define VERSION "version ${{ github.event.inputs.version }}"/g' src/version_def.h
     - name: Setup Build Directories
       run: |
         ./build_helper/github/setup.sh ${{ github.event.inputs.version }}
