@@ -39,3 +39,4 @@ jobs:
     - name: Build Info
       run: |
         ./build_helper/github/success_msg.sh
+        ls -lh /usr/bin/gcc*
