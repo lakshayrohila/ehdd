@@ -36,3 +36,6 @@ jobs:
           *.tar.gz
         draft: true
         prerelease: false
+    - name: Build Info
+      run: |
+        ./build_helper/github/success_msg.sh
