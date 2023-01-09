@@ -5,9 +5,9 @@
 
 # compile program to show glibc version
 PRE="./build_helper/github/test"
-gcc $PRE/get_glibc_version.c -o get_glibc_version
+gcc-7 $PRE/get_glibc_version.c -o get_glibc_version
 
 # print things
 echo 'Builds successful! These are used for building:-
-	gcc version: '`gcc --version | grep gcc`'
+	gcc version: '`gcc-7 --version | grep gcc`'
       glibc version: '`./get_glibc_version`
