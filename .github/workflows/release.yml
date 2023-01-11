@@ -10,13 +10,13 @@ on:
 
 jobs:
   release:
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v3
     - name: Setup C Compiler
       run: |
         sudo apt-get update -y
-        sudo apt-get install -y gcc-7-multilib
+        sudo apt-get install -y gcc-multilib
     - name: Setup Build Directories
       run: |
         ./build_helper/github/setup.sh ${{ github.event.inputs.version }}
@@ -36,6 +36,3 @@ jobs:
           *.tar.gz
         draft: true
         prerelease: false
-    - name: Build Info
-      run: |
-        ./build_helper/github/success_msg.sh

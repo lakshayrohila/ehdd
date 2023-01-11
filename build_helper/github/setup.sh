@@ -15,8 +15,5 @@ makedir() {
 	cp $HELPER_DIR/src/* $BUILD_DIR_PRE-$1
 }
 
-makedir "x86_64"		# dynamic
-makedir "x86"			#  ones
-
-makedir "x86_64-static"		# static
-makedir "x86-static"		#  ones
+makedir "x86_64"
+makedir "x86"

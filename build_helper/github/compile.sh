@@ -6,7 +6,7 @@
 HELPER_DIR="./build_helper/github"
 BUILD_DIR_PRE="./ehdd-v$1"
 
-CC="gcc-7 src/main.c -Wall -Wextra -Werror"
+CC="gcc src/main.c -Wall -Wextra -Werror -static"
 
 compile() {
 	$CC -m$1 -o $BUILD_DIR_PRE-$2/usr/bin/ehdd
@@ -17,8 +17,5 @@ compile() {
 	fi
 }
 
-compile "64" "x86_64"		# dynamic
-compile "32" "x86"		#  ones
-
-compile "64 -static" "x86_64-static"	# static
-compile "32 -static" "x86-static"	#  ones
+compile "64" "x86_64"
+compile "32" "x86"

@@ -11,8 +11,5 @@ compress() {
         tar -czvf "$buff.tar.gz" "$buff/"
 }
 
-compress "x86_64"		# dynamic
-compress "x86"			#  ones
-
-compress "x86_64-static"	# static
-compress "x86-static"		#  ones
+compress "x86_64"
+compress "x86"
