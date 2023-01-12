@@ -1,14 +1,12 @@
 ## Install ehdd:
 
-**ehdd** can be installed by two ways-
+**ehdd** can be installed by two methods:
 
 1. Installation from **binary** sources (packed as **tar.gz**)
 
 2. Installation by compiling from source (**gcc** required as compiler)
 
-#### These are the steps:
-
-##### Method-1:
+### Method-1:
 
 Perform these steps to install **ehdd** from its **already built binary** sources. These are available as **Releases** on [ehdd's Releases page](https://github.com/lakshayrohila/ehdd/releases).
 
@@ -38,7 +36,7 @@ This would install `ehdd` to `/usr/bin`.
 
 To uninstall `ehdd`, read [UNINSTALL.md](./UNINSTALL.md).
 
-##### Method-2:
+### Method-2:
 
 Perform these steps to install **ehdd** by compiling it:
 
