@@ -14,13 +14,13 @@ Perform these steps to install **ehdd** from its **already built binary** source
 
 1. Get the latest `ehdd` from [ehdd's Latest Release page](https://github.com/lakshayrohila/ehdd/releases/latest).
    
-   ![ehdd releases page screenshot-1](https://ibb.co/ct0jdZM)
+   Go to the **Assets** section here.
+   
+   ![ehdd releases page screenshot-2](https://i.ibb.co/0sfZ41b/ehdd-release2.png)
    
    You will see some options here:-
    
-   ![ehdd releases page screenshot-2](https://ibb.co/SfK0YHC)
-   
-   Ones named as `ehdd-v...-x...tar.gz` are already built binary sources, while those named as `Source Code (...)` are the source codes from which binaries have been built (You can use these sources for installation by [method-2](#method-2)). Note the `-x86`/`-x86_64` part here -- these are the specific architectures for which the binary source has been built.
+   Ones named as `ehdd-v...-x...tar.gz` are already built binary sources, while those named as `Source Code (...)` are the source codes from which binaries have been built (You can use these sources for installation by [Method-2](#method-2)). Note the `-x86`/`-x86_64` part here -- these are the specific architectures for which the binary source has been built.
    
    Download `-x86` for `32-bit` and `-x86_64` for `64-bit` computers.
 
