@@ -1,4 +1,4 @@
-## Install ehdd:
+## Installing ehdd:
 
 **ehdd** can be installed by two methods:
 
@@ -34,7 +34,7 @@ Perform these steps to install **ehdd** from its **already built binary** source
 
 This would install `ehdd` to `/usr/bin`.
 
-To uninstall `ehdd`, read [UNINSTALL.md](./UNINSTALL.md).
+To uninstall `ehdd`, please read [Uninstalling ehdd](#uninstalling-ehdd).
 
 ### Method-2:
 
@@ -53,6 +53,16 @@ Perform these steps to install **ehdd** by compiling it:
 
 This will install `ehdd` to `/usr/bin`.
 
-To uninstall `ehdd`, read [UNINSTALL.md](./UNINSTALL.md).
+To uninstall `ehdd`, read [Uninstalling ehdd](#uninstalling-ehdd).
 
 You can also create a program ready to be debugged (used with `gdb`) by replacing **Step 5** with: `$ make gdb`.
+
+## Uninstalling ehdd
+
+1. Open up a terminal.
+2. Run this command in the terminal:
+   ```
+   $ wget -qO - https://raw.githubusercontent.com/lakshayrohila/ehdd/master/build_helper/github/src/uninstall_ehdd.sh | bash
+   ```
+
+This will uninstall `ehdd` from your computer.
