@@ -2,7 +2,7 @@
 
 **ehdd** can be installed by two ways-
 
-1. Installation from **.tar.gz** (**no compiler** such as **gcc** required)
+1. Installation from **binary** sources (packed as **tar.gz**)
 
 2. Installation by compiling from source (**gcc** required as compiler)
 
@@ -10,9 +10,19 @@
 
 ##### Method-1:
 
-Perform these steps to install **ehdd** from its **.tar.gz**-
+Perform these steps to install **ehdd** from its **already built binary** sources. These are available as **Releases** on [ehdd's Releases page](https://github.com/lakshayrohila/ehdd/releases).
 
-1. Get the latest `ehdd` from [Releases page](https://github.com/lakshayrohila/ehdd/releases). It can be found as **Assets > ehdd-v*version*-x86_64.tar.gz** (here **x86_64** means **64-bit**. If you want to install ehdd on a **32-bit** machine, then download **ehdd-v*version*-x86.tar.gz**).
+1. Get the latest `ehdd` from [ehdd's Latest Release page](https://github.com/lakshayrohila/ehdd/releases/latest).
+
+   ![ehdd releases page screenshot-1](https://ibb.co/ct0jdZM)
+
+   You will see some options here:-
+
+   ![ehdd releases page screenshot-2](https://ibb.co/SfK0YHC)
+
+   Ones named as `ehdd-v...-x...tar.gz` are already built binary sources, while those named as `Source Code (...)` are the source codes from which binaries have been built. Note the `-x86`/`-x86_64` part here -- these are the specific architectures for which the binary source has been built.
+
+   Download `-x86` for `32-bit` and `-x86_64` for `64-bit` computers.
 
 2. Open up a terminal in the directory in which file was downloaded in **Step 1**.
    
@@ -22,11 +32,13 @@ Perform these steps to install **ehdd** from its **.tar.gz**-
    
    - `$ cd ehdd-*/` (replace `ehdd-*/` with the name of the directory that has been created in **Step 3**).
    
-   - `$ ./install.sh`
+   - `$ ./install_ehdd.sh`
 
 This would install `ehdd` to `/usr/bin`.
 
 To uninstall `ehdd`, read [UNINSTALL.md](./UNINSTALL.md).
+
+# Update from here!
 
 ##### Method-2:
 
