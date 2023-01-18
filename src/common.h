@@ -1,6 +1,8 @@
 #ifndef _INC_EHDD_COMMON_H
 #define _INC_EHDD_COMMON_H
 
+#define GITHUB_REPO "https://github.com/lakshayrohila/ehdd/issues"
+
 //---------------------------------------------------------------------------------------
 // THIS FUNCTION CHECKS IF DYNAMIC ALLOCATION OF MEMORY FAILED
 
@@ -14,7 +16,7 @@ int check_dynamic_pointer(void *pointer) {
         } else {
             printf("\033[31mError:\033[37m ");
             printf("Error while allocating memory: %s\n", strerror(err_sv));
-            printf("Please report this error at https://github.com/lakshayrohila/ehdd/issues.");
+            printf("Please report this error at %s/issues.", GITHUB_REPO);
         }
 
         return 1;
@@ -63,7 +65,7 @@ int save_cmd_out(const char *cmd) {
 	int err_sv = errno;
 
         printf("\033[31mError:\033[37m ");
-        printf("Unable to pipe command: %s\nPlease report this error at https://github.com/lakshayrohila/ehdd/issues.\n", strerror(err_sv));
+        printf("Unable to pipe command: %s\nPlease report this error at %s/issues.\n", strerror(err_sv), GITHUB_REPO);
 
         free(buf);
 
@@ -90,7 +92,7 @@ int save_cmd_out(const char *cmd) {
 
     if((status = pclose(cmd_fp)) == -1) {
         printf("\033[31mError:\033[37m ");
-        printf("Unable to close pipe for command: %s\nPlease report this error at https://github.com/lakshayrohila/ehdd/issues.\n", strerror(errno));
+        printf("Unable to close pipe for command: %s\nPlease report this error at %s/issues.\n", strerror(errno), GITHUB_REPO);
 
         free(buf);
 
@@ -114,7 +116,7 @@ enum {
     DO_NOTHING, EJECT_BYLABEL, EJECT_BYUUID, EJECT_BYNAME
 } todo;
 
-// todo is an enum; when printing information, we need it to be in a string format
+// todo is an enum; when printing information (error?), we need it to be in a string format
 char *get_string_todo() {
     switch(todo) {
         case EJECT_BYLABEL:
