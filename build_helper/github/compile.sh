@@ -6,10 +6,10 @@
 HELPER_DIR="./build_helper/github"
 BUILD_DIR_PRE="./ehdd-v$1"
 
-CC="gcc src/main.c -Wall -Wextra -Werror -static"
-
+CC_SUFFIX="src/main.c -Wall -Wextra -Werror $CFLAGS $LDFLAGS"
+#        . "/opt/x-tools/$CURR_COMP/activate"
 compile() {
-	$CC -m$1 -o $BUILD_DIR_PRE-$2/usr/bin/ehdd
+	$1 $CC_SUFFIX -o $BUILD_DIR_PRE-`cut -d'-' -f1 <<< $1`/usr/bin/ehdd
 
 	if [ $? -ne 0 ]; then
 		echo "Compilation failed: gcc returned with error"
@@ -17,5 +17,5 @@ compile() {
 	fi
 }
 
-compile "64" "x86_64"
-compile "32" "x86"
+compile "x86_64" "64" "x86_64"
+compile "i386" "32" "x86"

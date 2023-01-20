@@ -13,12 +13,14 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v3
-    - name: Setup C Compiler
+    - name: Setup Build Dependencies
       run: |
         sudo apt-get update -y
-        sudo apt-get install -y gcc-multilib
-    - name: Setup Build Directories
+        sudo apt-get install -y curl wget tar
+    - name: Setup toolchains
       run: |
+        ./build_helper/github/setup_toolchains.sh
+    - name: Setup Build Directories
         ./build_helper/github/setup.sh ${{ github.event.inputs.version }}
     - name: Compile
       run: |
