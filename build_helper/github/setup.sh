@@ -13,5 +13,5 @@ TO_DIRS=$(cat "../toolchains_packed/compilers_list.metadata" | cut -d'-' -f1)
 
 for dir in $TO_DIRS; do
 	mkdir -p "$BUILD_DIR_PRE-$dir/usr/bin"
-	cp "$HELPER_DIR/src/*" "$BUILD_DIR_PRE-$dir"
+	cp $HELPER_DIR/src/* "$BUILD_DIR_PRE-$dir"
 done
