@@ -27,16 +27,13 @@ jobs:
         sudo apt-get update -y
         sudo apt-get install -y curl wget tar
     - name: Setup toolchains
-      run: |
-        ./build_helper/github/setup_toolchains.sh
+      run: ./build_helper/github/setup_toolchains.sh
     - name: Setup Build Directories
-        ./build_helper/github/setup.sh ${{ github.event.inputs.version }}
+      run: ./build_helper/github/setup.sh ${{ github.event.inputs.version }}
     - name: Compile ehdd
-      run: |
-        ./build_helper/github/compile.sh ${{ github.event.inputs.version }}
+      run: ./build_helper/github/compile.sh ${{ github.event.inputs.version }}
     - name: Compress ehdd
-      run: |
-        ./build_helper/github/compress.sh ${{ github.event.inputs.version }}
+      run: ./build_helper/github/compress.sh ${{ github.event.inputs.version }}
     - name: Upload Release Draft
       uses: softprops/action-gh-release@v1
       with:
