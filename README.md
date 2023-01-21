@@ -43,4 +43,6 @@ The code itself is tried to be well-commented and easily-readable so that everyo
 
 For a list of contributors, see [GitHub-Contributors](https://github.com/lakshayrohila/ehdd/graphs/contributors).
 
+All the releases are built using [toolchains](https://github.com/dimkr/toolchains), which provides the compilers to build for different architecture targets, statically linking to [musl libc](https://musl.libc.org/).
+
 The ASCII art logo at the top was made using [FIGlet](https://www.figlet.org/).
