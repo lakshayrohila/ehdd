@@ -13,6 +13,15 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v3
+    - name: Create Cache toolchains Directory
+      run: |
+        mkdir toolchains_packed
+        ln -s `pwd`/toolchains_packed ../toolchains_packed
+    - name: Get Cached toolchains Directory
+      uses: actions/cache@v3.2.3
+      with:
+        path: toolchains_packed
+        key: toolchains_packed
     - name: Setup Build Dependencies
       run: |
         sudo apt-get update -y
@@ -22,13 +31,13 @@ jobs:
         ./build_helper/github/setup_toolchains.sh
     - name: Setup Build Directories
         ./build_helper/github/setup.sh ${{ github.event.inputs.version }}
-    - name: Compile
+    - name: Compile ehdd
       run: |
         ./build_helper/github/compile.sh ${{ github.event.inputs.version }}
-    - name: Compress
+    - name: Compress ehdd
       run: |
         ./build_helper/github/compress.sh ${{ github.event.inputs.version }}
-    - name: Upload Release
+    - name: Upload Release Draft
       uses: softprops/action-gh-release@v1
       with:
         name: ehdd-v${{ github.event.inputs.version }}
