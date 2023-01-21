@@ -4,9 +4,12 @@
  _  | |     __|   __|
 |/  |/ \   /  |  /  |
 |__/|   |_/\_/|_/\_/|_/
+
 ```
 
-`ehdd` can be used for ejecting and shutdowning an ejectable storage device on a Linux system.
+## Overview
+
+`ehdd` can be used for ejecting and shutdowning an ejectable storage device on a Linux system. The program makes use of the `eject` and `udisksctl` command, hence working as a wrapper around them, and in the way making it easier to perform each command.
 
 ## Installation and Uninstallation:
 
