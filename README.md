@@ -41,10 +41,10 @@ The code itself is tried to be well-commented and easily-readable so that everyo
 
 `ehdd` is free and unencumbered software released under the terms of the MIT license, so as to keep the program most permissive. See [LICENSE.md](LICENSE.md) for license info.
 
-The directory `legal`, which is a symbolic-link to `build_helper/github/src/legal/`, lists copyright notices of all the softwares used for development of `ehdd`, including that of `musl`.
-
 For a list of contributors, see [GitHub-Contributors](https://github.com/lakshayrohila/ehdd/graphs/contributors).
 
 All the releases are built using [toolchains](https://github.com/dimkr/toolchains), which provides the compilers to build for different architecture targets, statically linking to [musl libc](https://musl.libc.org/).
+
+The directory `legal`, which is a symbolic-link to `build_helper/github/src/legal/`, lists copyright notices of all the softwares used for development of `ehdd`.
 
 The ASCII art logo at the top was made using [FIGlet](https://www.figlet.org/).
