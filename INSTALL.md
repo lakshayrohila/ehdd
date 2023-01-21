@@ -43,43 +43,57 @@ The builds are done for all the architectures `toolchains` supports. Here is wha
 _`$file ...` means output of `file` command ran on the specific build's executable._
 
 1. `aarch64`: This build supports **ARM 64-bit little-endian** architecture.
+   
    _Please read [Wikipedia-AArch64](https://wikipedia.org/wiki/AArch64) for more information._
+   
    ```
    $ file ehdd-aarch64
    ehdd-aarch64: ELF 64-bit LSB executable, ARM aarch64, version 1 (SYSV), statically linked, with debug_info, not stripped
    ```
 2. `armeb`: This build supports **ARM 32-bit big-endian** architecture.
+   
    _Please read [Wikipedia-AArch32](https://wikipedia.org/wiki/ARM_architecture_family#AArch32) for more information._
+   
    ```
    $ file ehdd-armeb
    ehdd-armeb: ELF 32-bit MSB executable, ARM, EABI5 version 1 (SYSV), statically linked, with debug_info, not stripped
    ```
 3. `arm`: This build supports **ARM 32-bit little-endian** architecture.
+   
    _Please read [Wikipedia-Endianness](https://wikipedia.org/wiki/Endianness) for difference between **big** and **little** endianness._
+   
    ```
    $ file ehdd-arm
    ehdd-arm: ELF 32-bit LSB executable, ARM, EABI5 version 1 (SYSV), statically linked, with debug_info, not stripped
    ```
 4. `mips`: This build supports **MIPS 32-bit big-endian** architecture.
+   
    _Please read [Wikipedia-MIPS](https://wikipedia.org/wiki/MIPS_architecture) for more information._
+   
    ```
    $ file ehdd-mips
    ehdd-mips: ELF 32-bit MSB executable, MIPS, MIPS-I version 1 (SYSV), statically linked, with debug_info, not stripped
    ```
 5. `mipsel`: This build supports **MIPS 32-bit little-endian** architecture.
+   
    _Please read [Wikipedia-Endianness](https://wikipedia.org/wiki/Endianness) for difference between **big** and **little** endianness._
+   
    ```
    $ file ehdd-mipsel
    ehdd-mipsel: ELF 32-bit LSB executable, MIPS, MIPS-I version 1 (SYSV), statically linked, with debug_info, not stripped
    ```
 4. `i386`: This build supports **Intel 80386 32-bit** architecture. Thus, this build should support all **x86** architectures <sup>[[1]](https://superuser.com/a/103205/1765585)</sup>.
+   
    _Please read [Wikipedia-i386](https://wikipedia.org/wiki/I386) for more information._
+   
    ```
    $ file ehdd-i386
    ehdd-i386: ELF 32-bit LSB executable, Intel 80386, version 1 (SYSV), statically linked, with debug_info, not stripped
    ```
 5. `x86_64`: This build supports **x86_64 64-bit** architecture.
+   
    _Please read [Wikipedia-X86-64](https://wikipedia.org/wiki/X86-64) for more information._
+   
    ```
    $ file ehdd-x86_64
    ehdd-x86_64: ELF 64-bit LSB executable, x86-64, version 1 (SYSV), statically linked, not stripped
