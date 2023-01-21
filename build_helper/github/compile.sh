@@ -8,12 +8,9 @@ TOOLCHAINS_COMPILERS=`cat "../toolchains_packed/compilers_list.metadata"`
 
 CC_SUFFIX="src/main.c -Wall -Wextra -Werror"
 
-CFLAGS_bak="$CFLAGS"
-LDFLAGS_bak="$LDFLAGS"
-
 for compiler in $TOOLCHAINS_COMPILERS; do
-	CFLAGS="$CFLAGS_bak"
-	LDFLAGS="$LDFLAGS_bak"
+	CFLAGS=""
+	LDFLAGS=""
 
         . /opt/x-tools/$compiler/activate
 
