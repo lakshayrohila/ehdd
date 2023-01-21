@@ -5,6 +5,6 @@
 
 BUILD_DIR_PRE="./ehdd-v$1"
 
-for build in $BUILD_DIR_PRE*/
+for build in $BUILD_DIR_PRE*/; do
         tar -czvf "$build.tar.gz" "$build"
 done
