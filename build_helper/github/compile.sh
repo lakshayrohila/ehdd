@@ -11,7 +11,7 @@ CC_SUFFIX="src/main.c -Wall -Wextra -Werror"
 for compiler in $TOOLCHAINS_COMPILERS; do
         . /opt/x-tools/$compiler/activate
 
-	TODO="$compiler $CC_SUFFIX $CFLAGS $LDFLAGS -o $BUILD_DIR_PRE-$(echo $compiler | cut -d'-' -f1)/usr/bin/ehdd"
+	TODO="$compiler-gcc $CC_SUFFIX $CFLAGS $LDFLAGS -o $BUILD_DIR_PRE-$(echo $compiler | cut -d'-' -f1)/usr/bin/ehdd"
 
 	echo "$TODO"
 
