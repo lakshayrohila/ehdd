@@ -4,7 +4,7 @@ This program can be used for ejecting and shutdowning an ejectable storage devic
 
 ## Installation and Uninstallation:
 
-Read [Install.md](./INSTALL.md) for installation and uninstallation help.
+Read [INSTALL.md](./INSTALL.md) for installation and uninstallation help.
 
 ## Dependencies:
 
