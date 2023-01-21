@@ -1,4 +1,4 @@
-## Help (as returned by ehdd --help):
+## Help _(as returned by `ehdd --help`)_:
 ```
 Usage: sudo ehdd [OPTIONS] or [DEVICE NAMES]
 
