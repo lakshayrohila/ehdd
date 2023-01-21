@@ -18,9 +18,7 @@ Perform these steps to install **ehdd** from its **already built binary** source
    
    You will see some options here:-
    
-   Ones named as `ehdd-v...-x...tar.gz` are already built binary sources, while those named as `Source Code (...)` are the source codes from which binaries have been built (You can use these sources for installation by [Method-2](#method-2)). Note the `-x86`/`-x86_64` part here -- these are the specific architectures for which the binary source has been built.
-   
-   Download `-x86` for `32-bit` and `-x86_64` for `64-bit` computers.
+   Ones named as `ehdd-v...-arch.tar.gz` are already built binary sources, while those named as `Source Code (...)` are the source codes from which binaries have been built (You can use these sources for installation by [Method-2](#method-2)). Note the `-arch` part here -- these are the specific architectures for which the specific binary has been built. Read [Binary Architectures](#binary-architectures) for more information on each architecture.
 
 2. Open up a terminal in the directory in which file was downloaded in **Step 1**.
    
@@ -35,6 +33,16 @@ Perform these steps to install **ehdd** from its **already built binary** source
 This would install `ehdd` to `/usr/bin`.
 
 To uninstall `ehdd`, please read [Uninstalling ehdd](#uninstalling-ehdd).
+
+#### Binary Architectures
+
+**ehdd** uses [toolchains](https://github.com/dimkr/toolchains) (thanks to the developers of the software!) to build each of its **official** release (only those present at the [Release page](https://github.com/lakshayrohila/ehdd/releases)), thus statically linking to [musl libc](https://musl.libc.org/).
+
+The builds are done for all the architectures `toolchains` supports. Here is what each architecture means:
+
+1. `aarch64`: This build supports **ARM-64 little-endian** architecture.
+# CONTINUE FROM HERE
+# add $(file ehdd-*)
 
 ### Method-2:
 
