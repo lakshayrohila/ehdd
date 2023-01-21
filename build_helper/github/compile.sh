@@ -9,6 +9,9 @@ TOOLCHAINS_COMPILERS=`cat "../toolchains_packed/compilers_list.metadata"`
 CC_SUFFIX="src/main.c -Wall -Wextra -Werror"
 
 for compiler in $TOOLCHAINS_COMPILERS; do
+	CFLAGS=""
+	LDFLAGS=""
+
         . /opt/x-tools/$compiler/activate
 
 	TODO="$compiler-gcc $CC_SUFFIX $CFLAGS $LDFLAGS -o $BUILD_DIR_PRE-$(echo $compiler | cut -d'-' -f1)/usr/bin/ehdd"
