@@ -24,8 +24,8 @@ EHDD_DIR="$(dirname "$(readlink -f "$0")")"
 
 cd "$TOOLCHAINS_PACKED_SAVE_DIR"
 
-if [ ! -f ./toolchains_tag.metadata ]; then
-	echo "#### NEW FILE ####" > "./toolchains_tag.metadata"
+if [ ! -f "./toolchains_tag.metadata" ]; then
+	echo '#### NEW FILE ####' > "./toolchains_tag.metadata"
 fi
 
 if [ "$LATEST_TOOLCHAINS_TAG" != `cat "./toolchains_tag.metadata"` ]; then
