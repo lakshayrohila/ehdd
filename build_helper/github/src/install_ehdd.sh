@@ -14,6 +14,7 @@ fi
 TO_COPY=$(ls -l | grep "^d" | rev | cut -d' ' -f1 | rev)
 
 for i in $TO_COPY; do
+	[ "$i" == "legal" ] && continue
 	cp -r "./$i" /
 done
 
