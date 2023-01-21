@@ -16,9 +16,13 @@ Perform these steps to install **ehdd** from its **already built binary** source
    
    ![ehdd releases page screenshot-2](https://i.ibb.co/0sfZ41b/ehdd-release2.png)
    
-   You will see some options here:-
+   **Explanation of each download option:**
    
-   Ones named as `ehdd-v...-arch.tar.gz` are already built binary sources, while those named as `Source Code (...)` are the source codes from which binaries have been built (You can use these sources for installation by [Method-2](#method-2)). Note the `-arch` part here -- these are the specific architectures for which the specific binary has been built. Read [Binary Architectures](#binary-architectures) for more information on each architecture.
+   Ones named as `ehdd-v...-arch.tar.gz` are already built binary sources, while those named as `Source Code (...)` are the source codes from which binaries have been built (You can use these sources for installation by [Method-2](#method-2)).
+   
+   Note the `-arch` part here -- these are the specific architectures for which the specific binary has been built.
+   
+   Read [Binary Architectures](#binary-architectures) for more information on each architecture.
 
 2. Open up a terminal in the directory in which file was downloaded in **Step 1**.
    
