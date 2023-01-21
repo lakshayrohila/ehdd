@@ -14,7 +14,7 @@ for compiler in $TOOLCHAINS_COMPILERS; do
 
         . /opt/x-tools/$compiler/activate
 
-	CFLAGS=$(echo $CFLAGS | sed 's/-Os/-O3/g' | sed 's/-g//g')
+	CFLAGS=$(echo $CFLAGS | sed 's/-Os/-O3/g')
 
 	TODO="$compiler-gcc $CC_SUFFIX $CFLAGS $LDFLAGS -o $BUILD_DIR_PRE-$(echo $compiler | cut -d'-' -f1)/usr/bin/ehdd"
 
