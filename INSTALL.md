@@ -24,9 +24,11 @@ Perform these steps to install **ehdd** from its **already built binary** source
    
    Run these commands in the terminal-
    
-   - `$ tar -xvzf ehdd-*.tar.gz` (replace `ehdd-*.tar.gz` with the name of the file that is downloaded in **Step 1**).
+   _NOTE: You may need to change `*` with downloaded ehdd version._
    
-   - `$ cd ehdd-*/` (replace `ehdd-*/` with the name of the directory that has been created in **Step 3**).
+   - `$ tar -xvzf ehdd-*.tar.gz`
+   
+   - `$ cd ehdd-*/`
    
    - `$ ./install_ehdd.sh`
 
