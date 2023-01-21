@@ -4,7 +4,7 @@
 # read 'README.dir' for more information
 
 # set version
-sed -i 's/#define VERSION "version undefined"/#define VERSION "version $1"/g' ./src/version_def.h
+sed -i 's/#define VERSION "version undefined"/#define VERSION "version '$1'"/g' ./src/version_def.h
 
 # setup build dirs
 HELPER_DIR="./build_helper/github"
