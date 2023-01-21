@@ -9,11 +9,9 @@ sed -i 's/#define VERSION "version undefined"/#define VERSION "version $1"/g' ./
 # setup build dirs
 HELPER_DIR="./build_helper/github"
 BUILD_DIR_PRE="./ehdd-v$1"
+TO_DIRS=$(cat "../toolchains_packed/compilers_list.metadata" | cut -d'-' -f1)
 
-makedir() {
-	mkdir -p $BUILD_DIR_PRE-$1/usr/bin
-	cp $HELPER_DIR/src/* $BUILD_DIR_PRE-$1
-}
-
-makedir "x86_64"
-makedir "x86"
+for dir in $TO_DIRS; do
+	mkdir -p "$BUILD_DIR_PRE-$dir/usr/bin"
+	cp "$HELPER_DIR/src/*" "$BUILD_DIR_PRE-$dir"
+done

@@ -3,19 +3,17 @@
 # this script is called by a GitHub workflow run.
 # read 'README.dir' for more information
 
-HELPER_DIR="./build_helper/github"
 BUILD_DIR_PRE="./ehdd-v$1"
+TOOLCHAINS_COMPILERS=`cat "../toolchains_packed/compilers_list.metadata"`
 
-CC_SUFFIX="src/main.c -Wall -Wextra -Werror $CFLAGS $LDFLAGS"
-#        . "/opt/x-tools/$CURR_COMP/activate"
-compile() {
-	$1 $CC_SUFFIX -o $BUILD_DIR_PRE-`cut -d'-' -f1 <<< $1`/usr/bin/ehdd
+CC_SUFFIX="src/main.c -Wall -Wextra -Werror"
 
-	if [ $? -ne 0 ]; then
-		echo "Compilation failed: gcc returned with error"
-		exit 1
-	fi
-}
+for compiler in $TOOLCHAINS_COMPILERS; do
+        . /opt/x-tools/$compiler/activate
 
-compile "x86_64" "64" "x86_64"
-compile "i386" "32" "x86"
+	TODO="$compiler $CC_SUFFIX $CFLAGS $LDFLAGS -o $BUILD_DIR_PRE-$(cut -d'-' -f1 <<< $compiler)/usr/bin/ehdd"
+
+	echo "$TODO"
+
+	$TODO || { printf "compilation failed: Please read above errors.\nExiting!\n"; exit 1; }
+done

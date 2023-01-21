@@ -1,6 +1,7 @@
 This directory has all the scripts called by 'release' GitHub workflow.
 
 The following scripts are called in a workflow run (in order):-
-	1. setup.sh
-	2. compile.sh
-	3. compress.sh
+	1. setup_toolchains.sh
+	2. setup.sh
+	3. compile.sh
+	4. compress.sh
