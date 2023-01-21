@@ -25,10 +25,10 @@ EHDD_DIR="$(dirname "$(readlink -f "$0")")"
 cd "$TOOLCHAINS_PACKED_SAVE_DIR"
 
 if [ ! -f "./toolchains_tag.metadata" ]; then
-	echo '#### NEW FILE ####' > "./toolchains_tag.metadata"
+	echo 'NEW FILE' > "./toolchains_tag.metadata"
 fi
 
-if [ "$LATEST_TOOLCHAINS_TAG" != `cat "./toolchains_tag.metadata"` ]; then
+if [ "$LATEST_TOOLCHAINS_TAG" != "$(cat "./toolchains_tag.metadata")" ]; then
 	DOWNLOADS_URLS=$(curl -s "$LATEST_API_URL" | grep "browser_download_url.*tar.gz" | cut -d: -f2,3 | tr -d \")
 
 	wget $DOWNLOADS_URLS || { printf "wget failed: Please read above errors.\nExiting!\n"; exit 1; }
