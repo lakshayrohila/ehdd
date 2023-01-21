@@ -22,12 +22,11 @@ LATEST_TOOLCHAINS_TAG=$(curl -s "$LATEST_API_URL" | grep "tag_name.*" | cut -d: 
 TOOLCHAINS_PACKED_SAVE_DIR="../toolchains_packed"
 EHDD_DIR="$(dirname "$(readlink -f "$0")")"
 
-if [ ! -d $TOOLCHAINS_PACKED_SAVE_DIR ]; then
-	mkdir $TOOLCHAINS_PACKED_SAVE_DIR
+cd "$TOOLCHAINS_PACKED_SAVE_DIR"
+
+if [ ! -f ./toolchains_tag.metadata ]; then
 	echo "#### NEW FILE ####" > "./toolchains_tag.metadata"
 fi
-
-cd "$TOOLCHAINS_PACKED_SAVE_DIR"
 
 if [ "$LATEST_TOOLCHAINS_TAG" != `cat "./toolchains_tag.metadata"` ]; then
 	DOWNLOADS_URLS=$(curl -s "$LATEST_API_URL" | grep "browser_download_url.*tar.gz" | cut -d: -f2,3 | tr -d \")
