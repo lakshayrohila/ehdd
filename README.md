@@ -27,7 +27,7 @@ In addition to these, if you're going to install the program using [Method-2](./
 
 ## Usage
 
-`ehdd` can be used for ejecting and shutdowning an ejectable storage device on a Linux system. Please read [Help](./HELP.md) for more information.
+`ehdd` can be used for ejecting and shutdowning an ejectable storage device on a Linux system. Please read [HELP.md](./HELP.md) for more information.
 
 ## Bug Reports and Contributions
 
