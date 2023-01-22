@@ -14,7 +14,7 @@ Perform these steps to install **ehdd** from its **already built binary** source
    
    Go to the **Assets** section here.
    
-   ![ehdd releases page screenshot-2](https://i.ibb.co/0sfZ41b/ehdd-release2.png)
+   ![image to be changed](https://example.com/)
    
    **Explanation of each download option:**
    
