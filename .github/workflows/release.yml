@@ -25,7 +25,7 @@ jobs:
     - name: Setup Build Dependencies
       run: |
         sudo apt-get update -y
-        sudo apt-get install -y curl wget tar
+        sudo apt-get install -y curl wget tar figlet
     - name: Setup toolchains
       run: ./build_helper/github/setup_toolchains.sh
     - name: Setup Build Directories
