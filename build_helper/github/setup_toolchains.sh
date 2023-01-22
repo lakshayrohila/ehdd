@@ -15,7 +15,7 @@ echo "Setting up compilers to be used ....."
 # for more information on downloading artifacts from GitHub.
 LATEST_API_URL="https://api.github.com/repos/dimkr/toolchains/releases/latest"
 
-LATEST_TOOLCHAINS_TAG=$(curl -s "$LATEST_API_URL" | grep "tag_name.*" | cut -d: -f2 | cut -d\" -f2)
+LATEST_TOOLCHAINS_TAG="$(curl -s "$LATEST_API_URL" | grep "tag_name" | cut -d: -f2 | cut -d\" -f2)"
 
 # 'TOOLCHAINS_PACKED_SAVE_DIR' will be cached on GitHub workflow runs.
 # Get the cached dirs if present, otherwise create new.
@@ -24,16 +24,18 @@ EHDD_DIR="$(dirname "$(readlink -f "$0")")"
 
 cd "$TOOLCHAINS_PACKED_SAVE_DIR"
 
-if [ ! -f "./toolchains_tag.metadata" ]; then
-	echo 'NEW FILE' > "./toolchains_tag.metadata"
+if [ ! -f ./toolchains_tag.metadata ]; then
+	echo 'NEW FILE' > ./toolchains_tag.metadata
 fi
 
-if [ "$LATEST_TOOLCHAINS_TAG" != "$(cat "./toolchains_tag.metadata")" ]; then
-	DOWNLOADS_URLS=$(curl -s "$LATEST_API_URL" | grep "browser_download_url.*tar.gz" | cut -d: -f2,3 | tr -d \")
+if [ "$LATEST_TOOLCHAINS_TAG" != "$(cat ./toolchains_tag.metadata)" ]; then
+	TC_DOWNLOADS_URLS="$(curl -s "$LATEST_API_URL" | grep "browser_download_url" | cut -d: -f2,3 | tr -d \")"
 
-	wget $DOWNLOADS_URLS || { printf "wget failed: Please read above errors.\nExiting!\n"; exit 1; }
+	echo "wget -t 3 $TC_DOWNLOADS_URLS"
 
-	echo "$LATEST_TOOLCHAINS_TAG" > "./toolchains_tag.metadata"
+	wget -t 3 $TC_DOWNLOADS_URLS || { printf "wget failed: Please read above errors.\nExiting!\n"; exit 1; }
+
+	echo "$LATEST_TOOLCHAINS_TAG" > ./toolchains_tag.metadata
 fi
 
 for tar_pkg in *.tar.gz; do
