@@ -11,11 +11,11 @@
 
 `ehdd` can be used for ejecting and shutdowning an ejectable storage device on a Linux system. The program makes use of the `eject` and `udisksctl` command, hence working as a wrapper around them, and in the way making it easier to perform each command.
 
-## Installation and Uninstallation:
+## Installation and Uninstallation
 
 Read [INSTALL.md](./INSTALL.md) for installation and uninstallation help.
 
-## Dependencies:
+## Dependencies
 
 Here are all the program dependencies:-
   1. ```eject``` command
@@ -25,11 +25,11 @@ Here are all the program dependencies:-
 In addition to these, if you're going to install the program using [Method-2](./INSTALL.md#method-2) (by compilation), you're going to need these programs installed as well:-
   1. ```gcc```
 
-## Usage:
+## Usage
 
 `ehdd` can be used for ejecting and shutdowning an ejectable storage device on a Linux system. Please read [Help](./HELP.md) for more information.
 
-## Bug Reports and Contributions:
+## Bug Reports and Contributions
 
 Bugs can be reported / features can be asked for in the [Issues](https://github.com/lakshayrohila/ehdd/issues) section provided in GitHub.
 
@@ -45,6 +45,6 @@ For a list of contributors, see [GitHub-Contributors](https://github.com/lakshay
 
 All the releases are built using [toolchains](https://github.com/dimkr/toolchains), which provides the compilers to build for different architecture targets, statically linking to [musl libc](https://musl.libc.org/).
 
-The directory `legal`, which is a symbolic-link to `build_helper/github/src/legal/`, lists copyright notices of all the softwares used for development of `ehdd`.
+The directory `legal` lists copyright notices of all the softwares used for development of `ehdd`.
 
 The ASCII art logo at the top was made using [FIGlet](https://www.figlet.org/).
