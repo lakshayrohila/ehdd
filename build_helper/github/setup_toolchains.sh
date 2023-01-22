@@ -7,12 +7,9 @@
 
 # This script setups the compilers to be used received from toolchains.
 
-# setup compilers to be used
-
 echo "Setting up compilers to be used ....."
 
-# GitHub REST API used. Read https://docs.github.com/rest/actions/artifacts
-# for more information on downloading artifacts from GitHub.
+# GitHub REST API is used to read JSON data for latest toolchains release.
 LATEST_API_URL="https://api.github.com/repos/dimkr/toolchains/releases/latest"
 
 LATEST_TOOLCHAINS_TAG="$(curl -s "$LATEST_API_URL" | grep "tag_name" | cut -d: -f2 | cut -d\" -f2)"
