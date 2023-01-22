@@ -115,8 +115,10 @@ Perform these steps to install **ehdd** by compiling it:
    
    Run these commands in the terminal-
    
-   - `$ tar -xvzf ehdd-*.tar.gz` (replace `ehdd-*.tar.gz` with the name of the file that is downloaded in **Step 1**).
-   - `$ cd ehdd-*/` (replace `ehdd-*/` with the name of the directory that has been created in **Step 3**).
+   _NOTE: You may need to change `*` with downloaded ehdd version._
+   
+   - `$ tar -xvzf ehdd-*.tar.gz`
+   - `$ cd ehdd-*/`
    - `$ make`
    - `$ make install`
 
