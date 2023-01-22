@@ -39,7 +39,7 @@ The code itself is tried to be well-commented and easily-readable so that everyo
 
 ## Credits and Legal Information
 
-`ehdd` is free and unencumbered software released under the terms of the MIT license, so as to keep the program most permissive. See [LICENSE.md](LICENSE.md) for license info.
+`ehdd` is free and unencumbered software released under the terms of the MIT license. See [LICENSE.md](LICENSE.md) for license info.
 
 For a list of contributors, see [GitHub-Contributors](https://github.com/lakshayrohila/ehdd/graphs/contributors).
 
