@@ -47,4 +47,4 @@ All the releases are built using [toolchains](https://github.com/dimkr/toolchain
 
 The directory `legal` lists copyright notices of all the softwares used for development of `ehdd`.
 
-The ASCII art logo at the top was made using [FIGlet](https://www.figlet.org/).
+The ASCII art logo at the top was made using [FIGlet](http://www.figlet.org/).
