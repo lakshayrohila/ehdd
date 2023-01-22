@@ -36,7 +36,7 @@ Perform these steps to install **ehdd** from its **already built binary** source
    
    - `$ ./install_ehdd.sh`
 
-This would install `ehdd` to `/usr/bin`.
+This will install `ehdd` to `/usr/bin`.
 
 To uninstall `ehdd`, please read [Uninstalling ehdd](#uninstalling-ehdd).
 
