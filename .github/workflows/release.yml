@@ -31,7 +31,7 @@ jobs:
       run: |
         ./build_helper/github/setup_toolchains.sh -c
         
-        if git status -s | grep "^??.*toolchains.update_available"; then
+        if git status -s | grep "^??.*toolchains.update_available" >/dev/null 2>&1; then
           echo "file_present=true\n" >> $GITHUB_OUTPUT
         else
           echo "file_present=false\n" >> $GITHUB_OUTPUT
