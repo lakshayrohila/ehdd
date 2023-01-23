@@ -33,10 +33,10 @@ jobs:
         TC_UPDATE_CHECK_RESULT=$?
     - name: Delete Branch Cache
       continue-on-error: false
-      if: ${{ ! $TC_UPDATE_CHECK_RESULT }}
+      if: ! $TC_UPDATE_CHECK_RESULT
       uses: snnaplab/delete-branch-cache-action@v1.0.0
     - name: Download toolchains' Update
-      if: ${{ ! $TC_UPDATE_CHECK_RESULT }}
+      if: ! $TC_UPDATE_CHECK_RESULT
       run: ./build_helper/github/setup_toolchains.sh -d
     - name: Install toolchains
       run: ./build_helper/github/setup_toolchains.sh -i
