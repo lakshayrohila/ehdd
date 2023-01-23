@@ -27,20 +27,13 @@ cd "$TOOLCHAINS_PACKED_SAVE_DIR"
 
 case $1 in
 -c)
-	[ -f ./toolchains_tag.metadata ] || echo 'NEW FILE' > ./toolchains_tag.metadata
+	UPDATE_AVAILABLE=0
 
-	if [ "$LATEST_TOOLCHAINS_TAG" != "$(cat ./toolchains_tag.metadata)" ]; then
-		rm -rf ./*
-	fi
+	[ -f ./toolchains_tag.metadata ] || { echo 'NEW FILE' > ./toolchains_tag.metadata; UPDATE_AVAILABLE=1; }
 
-	if [ ! -f ./toolchains_tag.metadata ]; then
-		echo 'NEW FILE' > ./toolchains_tag.metadata
-		cd $EHDD_DIR
-		exit 0
-	fi
+	[ "$LATEST_TOOLCHAINS_TAG" == "$(cat ./toolchains_tag.metadata)" ] || { rm -rf ./*; UPDATE_AVAILABLE=1; }
 
-	cd $EHDD_DIR
-	exit 1
+	[ $UPDATE_AVAILABLE -eq 1 ] && { touch $EHDD_DIR/toolchains.update_available }
 	;;
 -d)
 	TC_DOWNLOADS_URLS="$(curl -s "$LATEST_API_URL" | grep "browser_download_url" | cut -d: -f2,3 | tr -d \")"
