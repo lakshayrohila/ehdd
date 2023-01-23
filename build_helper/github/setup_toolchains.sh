@@ -26,13 +26,12 @@ LATEST_TOOLCHAINS_TAG="$(curl -s "$LATEST_API_URL" | grep "tag_name" | cut -d: -
 cd "$TOOLCHAINS_PACKED_SAVE_DIR"
 
 if [ $1 == '-c' ]; then
-	if [ ! -f ./toolchains_tag.metadata ]; then
-		echo 'NEW FILE' > ./toolchains_tag.metadata
-		cd $EHDD_DIR
-		exit 0
+	if [ "$LATEST_TOOLCHAINS_TAG" != "$(cat ./toolchains_tag.metadata)" ]; then
+		rm -r ./*
 	fi
 
-	if [ "$LATEST_TOOLCHAINS_TAG" != "$(cat ./toolchains_tag.metadata)" ]; then
+	if [ ! -f ./toolchains_tag.metadata ]; then
+		echo 'NEW FILE' > ./toolchains_tag.metadata
 		cd $EHDD_DIR
 		exit 0
 	fi
