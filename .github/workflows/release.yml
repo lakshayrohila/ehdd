@@ -20,7 +20,7 @@ jobs:
     - name: Get Cached toolchains Directory
       uses: actions/cache@v3.2.3
       with:
-        path: ../toolchains_packed
+        path: toolchains_packed
         key: toolchains_packed
     - name: Setup Build Dependencies
       run: |
