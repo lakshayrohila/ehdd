@@ -25,7 +25,7 @@ jobs:
         sudo apt-get update -qq
         sudo apt-get install -y --no-install-recommends curl wget tar figlet
     - name: Check For toolchains' Update
-      continue-on-error: true
+      if: success() || failure()
       run: ./build_helper/github/setup_toolchains.sh -c
     - name: Delete Branch Cache
       if: ${{ success() }}
