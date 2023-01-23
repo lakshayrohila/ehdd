@@ -22,14 +22,14 @@ done
 
 find ./ -type f -name '*.md' -exec sed -i 's/_@EHDD_VERSION_/'"$VERSION"'/g' "{}" \;
 
-FIGLET_OUTPUT="$( ( figlet -f script ehdd - v$VERSION -w 100 | sed '/^[[:space:]]*$/d' && echo ) | sed ':a;N;$!ba;s/\n/\\n/g')"
-sed -i 's/_@FIGLET_OUTPUT_/'"$(printf "$FIGLET_OUTPUT")"'/g'
+FIGLET_OUTPUT="$( ( figlet -f script ehdd - v$VERSION -w 100 | sed '/^[[:space:]]*$/d' && echo ) | sed ':a;N;$!ba;s#\n#/\\n#g')"
+sed -i 's/_@FIGLET_OUTPUT_/'"$FIGLET_OUTPUT)"'/g'
 
 cd "$EHDD_DIR"
 
 for dir in $TO_DIRS; do
 	mkdir -p "$BUILD_DIR_PRE-$dir/usr/bin"
-	cp $HELPER_DIR/src/* "$BUILD_DIR_PRE-$dir"
+	cp -r $HELPER_DIR/src/* "$BUILD_DIR_PRE-$dir"
 
 	find "$BUILD_DIR_PRE-$dir" -type f -name '*.md' -exec sed -i 's/_@EHDD_ARCHITECTURE_/'"$dir"'/g' "{}" \;
 done
