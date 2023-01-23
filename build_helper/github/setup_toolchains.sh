@@ -29,11 +29,19 @@ case $1 in
 -c)
 	UPDATE_AVAILABLE=0
 
-	[ -f ./toolchains_tag.metadata ] || { echo 'NEW FILE' > ./toolchains_tag.metadata; UPDATE_AVAILABLE=1; }
+	if [ ! -f ./toolchains_tag.metadata ]; then
+		echo 'NEW FILE' > ./toolchains_tag.metadata
+		UPDATE_AVAILABLE=1
+	fi
 
-	[ "$LATEST_TOOLCHAINS_TAG" == "$(cat ./toolchains_tag.metadata)" ] || { rm -rf ./*; UPDATE_AVAILABLE=1; }
+	if [ "$LATEST_TOOLCHAINS_TAG" != "$(cat ./toolchains_tag.metadata)" ]; then
+		rm -rf ./*
+		UPDATE_AVAILABLE=1
+	fi
 
-	[ $UPDATE_AVAILABLE -eq 1 ] && { touch $EHDD_DIR/toolchains.update_available; }
+	if [ $UPDATE_AVAILABLE -eq 1 ]; then
+		touch $EHDD_DIR/toolchains.update_available
+	fi
 	;;
 -d)
 	TC_DOWNLOADS_URLS="$(curl -s "$LATEST_API_URL" | grep "browser_download_url" | cut -d: -f2,3 | tr -d \")"
