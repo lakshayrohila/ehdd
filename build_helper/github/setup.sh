@@ -23,7 +23,7 @@ done
 find ./ -type f -name '*.md' -exec sed -i 's/_@EHDD_VERSION_/'"$VERSION"'/g' "{}" \;
 
 FIGLET_OUTPUT="$( ( figlet -f script ehdd - v$VERSION -w 100 | sed '/^[[:space:]]*$/d' && echo ) | sed ':a;N;$!ba;s#\n#/\\n#g')"
-sed -i 's/_@FIGLET_OUTPUT_/'"$FIGLET_OUTPUT)"'/g'
+sed -i 's/_@FIGLET_OUTPUT_/'"$FIGLET_OUTPUT"'/g'
 
 cd "$EHDD_DIR"
 
