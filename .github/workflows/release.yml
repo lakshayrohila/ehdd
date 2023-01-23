@@ -32,9 +32,9 @@ jobs:
       uses: snnaplab/delete-branch-cache-action@v1.0.0
     - name: Download toolchains' Update
       if: ${{ success() }}
-      run: ./build_helper/github/setup_toolchains.sh -c
+      run: ./build_helper/github/setup_toolchains.sh -d
     - name: Install toolchains
-      run: ./build_helper/github/setup_toolchains.sh -c
+      run: ./build_helper/github/setup_toolchains.sh -i
     - name: Setup Build Directories
       run: ./build_helper/github/setup.sh ${{ github.event.inputs.version }}
     - name: Compile ehdd
