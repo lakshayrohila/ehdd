@@ -28,13 +28,16 @@ cd "$TOOLCHAINS_PACKED_SAVE_DIR"
 if [ $1 == '-c' ]; then
 	if [ ! -f ./toolchains_tag.metadata ]; then
 		echo 'NEW FILE' > ./toolchains_tag.metadata
+		cd $EHDD_DIR
 		exit 0
 	fi
 
 	if [ "$LATEST_TOOLCHAINS_TAG" != "$(cat ./toolchains_tag.metadata)" ]; then
+		cd $EHDD_DIR
 		exit 0
 	fi
 
+	cd $EHDD_DIR
 	exit 1
 elif [ $1 == '-d' ]; then
 	TC_DOWNLOADS_URLS="$(curl -s "$LATEST_API_URL" | grep "browser_download_url" | cut -d: -f2,3 | tr -d \")"
