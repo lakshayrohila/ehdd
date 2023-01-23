@@ -15,8 +15,8 @@ jobs:
     - uses: actions/checkout@v3
     - name: Create toolchains Directory
       run: |
-        mkdir toolchains_packed
-        ln -s ./toolchains_packed ../
+        mkdir -p toolchains_packed
+        ln -s `pwd`/toolchains_packed ../toolchains_packed
     - name: Get Cached toolchains Directory
       uses: actions/cache@v3.2.3
       with:
