@@ -25,7 +25,8 @@ LATEST_TOOLCHAINS_TAG="$(curl -s "$LATEST_API_URL" | grep "tag_name" | cut -d: -
 
 cd "$TOOLCHAINS_PACKED_SAVE_DIR"
 
-if [ $1 == '-c' ]; then
+case $1 in
+-c)
 	if [ "$LATEST_TOOLCHAINS_TAG" != "$(cat ./toolchains_tag.metadata)" ]; then
 		rm -r ./*
 	fi
@@ -38,7 +39,8 @@ if [ $1 == '-c' ]; then
 
 	cd $EHDD_DIR
 	exit 1
-elif [ $1 == '-d' ]; then
+	;;
+-d)
 	TC_DOWNLOADS_URLS="$(curl -s "$LATEST_API_URL" | grep "browser_download_url" | cut -d: -f2,3 | tr -d \")"
 
 	echo "wget -t 3 $TC_DOWNLOADS_URLS"
@@ -46,7 +48,8 @@ elif [ $1 == '-d' ]; then
 	wget -t 3 $TC_DOWNLOADS_URLS || { printf "wget failed: Please read above errors.\nExiting!\n"; exit 1; }
 
 	echo "$LATEST_TOOLCHAINS_TAG" > ./toolchains_tag.metadata
-elif [ $1 == '-i' ]; then
+	;;
+-i)
 	for tar_pkg in *.tar.gz; do
 		[ ! -f "$tar_pkg" ] && { printf "No *.tar.gz found.\nExiting\n"; exit 1; }
 
@@ -57,6 +60,8 @@ elif [ $1 == '-i' ]; then
 	done
 
 	printf "$COMPILERS_LIST" > "./compilers_list.metadata"
-fi
+	;;
+esac
 
 cd $EHDD_DIR
+exit 0
