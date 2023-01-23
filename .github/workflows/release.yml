@@ -27,9 +27,10 @@ jobs:
         sudo apt-get update -qq
         sudo apt-get install -y --no-install-recommends curl wget tar figlet
     - name: Check For toolchains' Update
-      if: success() || failure()
+      continue-on-error: true
       run: ./build_helper/github/setup_toolchains.sh -c
     - name: Delete Branch Cache
+      continue-on-error: false
       if: ${{ success() }}
       uses: snnaplab/delete-branch-cache-action@v1.0.0
     - name: Download toolchains' Update
