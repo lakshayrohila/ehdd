@@ -30,7 +30,7 @@ case $1 in
 	[ -f ./toolchains_tag.metadata ] || { echo 'NEW FILE' > ./toolchains_tag.metadata }
 
 	if [ "$LATEST_TOOLCHAINS_TAG" != "$(cat ./toolchains_tag.metadata)" ]; then
-		rm -r ./*
+		rm -rf ./*
 	fi
 
 	if [ ! -f ./toolchains_tag.metadata ]; then
