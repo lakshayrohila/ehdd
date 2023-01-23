@@ -27,16 +27,20 @@ jobs:
         sudo apt-get update -qq
         sudo apt-get install -y --no-install-recommends curl wget tar figlet
     - name: Check For toolchains' Update
-      continue-on-error: true
+      id: toolchains_update_check
       run: |
         ./build_helper/github/setup_toolchains.sh -c
-        TC_UPDATE_CHECK_RESULT=$?
+        
+        if git status -s | grep "^??.*toolchains.update_available"; then
+          echo "file_present=true\n" >> $GITHUB_OUTPUT
+        else
+          echo "file_present=false\n" >> $GITHUB_OUTPUT
+        fi
     - name: Delete Branch Cache
-      continue-on-error: false
-      if: ! $TC_UPDATE_CHECK_RESULT
+      if: steps.toolchains_update_check.outputs.file_present == 'true'
       uses: snnaplab/delete-branch-cache-action@v1.0.0
     - name: Download toolchains' Update
-      if: ! $TC_UPDATE_CHECK_RESULT
+      if: steps.toolchains_update_check.outputs.file_present == 'true'
       run: ./build_helper/github/setup_toolchains.sh -d
     - name: Install toolchains
       run: ./build_helper/github/setup_toolchains.sh -i
