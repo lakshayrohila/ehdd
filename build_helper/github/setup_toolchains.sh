@@ -27,6 +27,8 @@ cd "$TOOLCHAINS_PACKED_SAVE_DIR"
 
 case $1 in
 -c)
+	[ -f ./toolchains_tag.metadata ] || { echo 'NEW FILE' > ./toolchains_tag.metadata }
+
 	if [ "$LATEST_TOOLCHAINS_TAG" != "$(cat ./toolchains_tag.metadata)" ]; then
 		rm -r ./*
 	fi
