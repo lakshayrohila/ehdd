@@ -10,7 +10,7 @@
 # The code itself is split into three:-
 #   1. Code to check for available update ('-c' cmd line option)
 #   2. Code to download available update ('-d' cmd line option) -- ran only
-#      when '-c' returned with code '0'.
+#      when '-c' returned with code '1'.
 #   3. Code to install toolchains ('-i' cmd line option)
 
 # GitHub REST API is used to read JSON data for latest toolchains release.
@@ -39,9 +39,7 @@ case $1 in
 		UPDATE_AVAILABLE=1
 	fi
 
-	if [ $UPDATE_AVAILABLE -eq 1 ]; then
-		touch $EHDD_DIR/toolchains.update_available
-	fi
+	exit $UPDATE_AVAILABLE
 	;;
 -d)
 	TC_DOWNLOADS_URLS="$(curl -s "$LATEST_API_URL" | grep "browser_download_url" | cut -d: -f2,3 | tr -d \")"
