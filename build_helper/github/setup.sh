@@ -22,8 +22,8 @@ done
 
 find ./ -type f -name '*.md' -exec sed -i 's/_@EHDD_VERSION_/'"$VERSION"'/g' "{}" \;
 
-FIGLET_OUTPUT="$( ( figlet -f script ehdd - v$VERSION -w 100 | sed '/^[[:space:]]*$/d' && echo ) | sed ':a;N;$!ba;s#\n#/\\n#g')"
-sed -i 's/_@FIGLET_OUTPUT_/'"$FIGLET_OUTPUT"'/g'
+FIGLET_OUTPUT="$(figlet -f script ehdd - v$VERSION -w 100 | sed '/^[[:space:]]*$/d' && echo)" \
+ruby -p -i -e "gsub('_@FIGLET_OUTPUT_', ENV['FIGLET_OUTPUT'])" README.md
 
 cd "$EHDD_DIR"
 
