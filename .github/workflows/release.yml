@@ -29,18 +29,22 @@ jobs:
     - name: Check For toolchains' Update
       id: toolchains_update_check
       run: |
-        ./build_helper/github/setup_toolchains.sh -c
-        
-        if git status -s | grep "^??.*toolchains.update_available" >/dev/null 2>&1; then
-          echo "file_present=true" >> $GITHUB_OUTPUT
+        if ! ./build_helper/github/setup_toolchains.sh -c; then
+          echo "update_available=true" >> $GITHUB_OUTPUT
         else
-          echo "file_present=false" >> $GITHUB_OUTPUT
+          echo "update_available=false" >> $GITHUB_OUTPUT
         fi
-    - name: Delete Branch Cache
-      if: steps.toolchains_update_check.outputs.file_present == 'true'
-      uses: snnaplab/delete-branch-cache-action@v1.0.0
+    - name: Delete toolchains' Cache
+      if: steps.toolchains_update_check.outputs.update_available == 'true'
+      run: |
+        curl \
+        -X DELETE \
+        -H "Accept: application/vnd.github+json" \
+        -H "Authorization: Bearer ${{ github.token }}"\
+        -H "X-GitHub-Api-Version: 2022-11-28" \
+        https://api.github.com/repos/${{ github.repository }}/actions/caches?key=toolchains_packed
     - name: Download toolchains' Update
-      if: steps.toolchains_update_check.outputs.file_present == 'true'
+      if: steps.toolchains_update_check.outputs.update_available == 'true'
       run: ./build_helper/github/setup_toolchains.sh -d
     - name: Install toolchains
       run: ./build_helper/github/setup_toolchains.sh -i
