@@ -21,8 +21,7 @@ LATEST_API_URL="https://api.github.com/repos/dimkr/toolchains/releases/latest"
 TOOLCHAINS_PACKED_SAVE_DIR="../toolchains_packed"
 EHDD_DIR="$(dirname "$(readlink -f "$0")")"
 
-#LATEST_TOOLCHAINS_TAG="$(curl -s "$LATEST_API_URL" | grep "tag_name" | cut -d: -f2 | cut -d\" -f2)"
-LATEST_TOOLCHAINS_TAG="v39" # debug
+LATEST_TOOLCHAINS_TAG="$(curl -s "$LATEST_API_URL" | grep "tag_name" | cut -d: -f2 | cut -d\" -f2)"
 
 cd "$TOOLCHAINS_PACKED_SAVE_DIR"
 
