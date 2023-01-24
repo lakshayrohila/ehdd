@@ -21,7 +21,8 @@ jobs:
       uses: actions/cache@v3.2.3
       with:
         path: toolchains_packed
-        key: toolchains_packed
+        key: toolchains_packed-${{ github.sha }}
+        restore-keys: toolchains_packed-
     - name: Setup Build Dependencies
       run: |
         sudo apt-get update -qq
