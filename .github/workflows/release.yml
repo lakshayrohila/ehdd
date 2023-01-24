@@ -29,20 +29,14 @@ jobs:
     - name: Check For toolchains' Update
       id: toolchains_update_check
       run: |
-        if ./build_helper/github/setup_toolchains.sh -c; then
+        if ! ./build_helper/github/setup_toolchains.sh -c; then
           echo "update_available=true" >> $GITHUB_OUTPUT
         else
           echo "update_available=false" >> $GITHUB_OUTPUT
         fi
     - name: Delete toolchains' Cache
       if: steps.toolchains_update_check.outputs.update_available == 'true'
-      run: |
-        curl \
-        -X DELETE \
-        -H "Accept: application/vnd.github+json" \
-        -H "Authorization: ${{ github.token }}"\
-        -H "X-GitHub-Api-Version: 2022-11-28" \
-        https://api.github.com/repos/${{ github.repository }}/actions/caches?key=toolchains_packed
+      uses: snnaplab/delete-branch-cache-action@v1.0.0
     - name: Download toolchains' Update
       if: steps.toolchains_update_check.outputs.update_available == 'true'
       run: ./build_helper/github/setup_toolchains.sh -d
