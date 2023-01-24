@@ -26,7 +26,7 @@ jobs:
     - name: Setup Build Dependencies
       run: |
         sudo apt-get update -qq
-        sudo apt-get install -y --no-install-recommends curl wget tar figlet
+        sudo apt-get install -y --no-install-recommends curl wget tar figlet ruby
     - name: Check For toolchains' Update
       id: toolchains_update_check
       run: |
