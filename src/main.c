@@ -2,46 +2,9 @@
  * This program is to eject and shut down an ejectable storage device. Read 'README.md' for more information.
 */
 
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
-#include <unistd.h>
-#include <sys/types.h>
-
-enum {
-    DO_NOTHING, EJECT_BYLABEL, EJECT_BYUUID, EJECT_BYNAME
-} todo;
-
-#define VERSION "undefined"
-
-// returns return code of the command
-int pretcode(const char *cmd) {
-    int status = system(cmd);
-
-    if(status < 0) {
-        return status;
-    } else if(status > 0) {
-        if(WIFEXITED(status)) {
-            return WEXITSTATUS(status);
-        }
-    }
-
-    return 0;
-}
-
-char *get_string_todo() {
-    switch(todo) {
-        case EJECT_BYLABEL:
-            return "bylabel";
-        case EJECT_BYUUID:
-            return "byuuid";
-        case EJECT_BYNAME:
-            return "byname";
-        default:
-            return "";
-    }
-}
-
+#include "includes.h"
+#include "version_def.h"
+#include "common.h"
 #include "parsecliflags.h"
 
 void print_help() {
@@ -58,61 +21,7 @@ Option                Meaning\n\
 }
 
 void print_version() {
-    printf("ehdd version %s.\n", VERSION);
-}
-
-struct _pr_out {
-	char *out;
-	int status;
-} pr_out;
-
-int save_cmd_out(const char *cmd) {
-    size_t buf_size = 150*sizeof(char), fread_ret = 0;
-    char *buf = malloc(buf_size+1);
-
-    pr_out.out = NULL;
-
-    FILE *cmd_fp = popen(cmd, "r");
-
-    if(cmd_fp == NULL) {
-        printf("\033[31mError:\033[37m ");
-        printf("Unable to pipe command: %s\nPlease report this error at https://github.com/lakshayrohila/ehdd/issues.\n", strerror(errno));
-
-        free(buf);
-
-        return 1;
-    }
-
-    int i = 1;
-
-    while(1) {
-        if((fread_ret = fread(buf+((i-1)*buf_size), sizeof(char), buf_size, cmd_fp)) != buf_size) {
-            buf[((i-1)*buf_size)+fread_ret] = '\0';
-            break;
-        }
-
-        i++;
-        buf = realloc(buf, (i*buf_size)+1);
-    }
-
-    int status = 0;
-
-    if((status = pclose(cmd_fp)) == -1) {
-        printf("\033[31mError:\033[37m ");
-        printf("Unable to close pipe for command: %s\nPlease report this error at https://github.com/lakshayrohila/ehdd/issues.\n", strerror(errno));
-
-        free(buf);
-
-        return 1;
-    }
-
-    pr_out.out = buf;
-
-    if(WIFEXITED(status)) {
-        pr_out.status = WEXITSTATUS(status);
-    }
-
-    return 0;
+    printf("ehdd %s.\n", VERSION);
 }
 
 int main(int argc, char *argv[]) {
@@ -155,20 +64,20 @@ int main(int argc, char *argv[]) {
             sprintf(cmd, "eject %s%s 2>&1", device_path_prefix, device_names_list.names[i]); // set the command to be run.
 
             if(save_cmd_out(cmd)) {
-				exit_code = 1;
-				break;
-			}
+                exit_code = 1;
+                break;
+            }
 
-			if(cli_flags.verbose) {
-				printf("%s", pr_out.out);
-			}
+            if(cli_flags.verbose) {
+                printf("%s", pr_out.out);
+            }
 
             if(pr_out.status != 0) {
                 // unable to eject device, return error code 1
                 printf("\033[31mError:\033[37m ");
                 printf("Unable to eject device. \033[1meject\033[0m returned with error code %d. Here is its output:\n\
 \033[33m%s\033[0mTry running \033[1meject \"%s%s\"\033[0m to check if the problem still persists.\n",
-					pr_out.status, pr_out.out, device_path_prefix, device_names_list.names[i]);
+                   pr_out.status, pr_out.out, device_path_prefix, device_names_list.names[i]);
                 exit_code = 1;
                 continue;
             }
@@ -186,20 +95,20 @@ int main(int argc, char *argv[]) {
             sprintf(cmd, "udisksctl power-off -b %s%s 2>&1", device_path_prefix, device_names_list.names[i]); // set the command to be run.
 
             if(save_cmd_out(cmd)) {
-				exit_code = 1;
-				break;
-			}
+                exit_code = 1;
+                break;
+            }
 
-			if(cli_flags.verbose) {
-				printf("%s", pr_out.out);
-			}
+            if(cli_flags.verbose) {
+                printf("%s", pr_out.out);
+            }
 
             if(pr_out.status != 0) {
                 // unable to power off device, return error code 1
                 printf("\033[31mError:\033[37m ");
                 printf("Unable to power off device. \033[1mudisksctl\033[0m returned with error code %d. Here is its output:\n\
 \033[33m%s\033[0mTry running \033[1mudisksctl power-off -b \"%s%s\"\033[0m.\n",
-					pr_out.status, pr_out.out, device_path_prefix, device_names_list.names[i]);
+                    pr_out.status, pr_out.out, device_path_prefix, device_names_list.names[i]);
                 exit_code = 1;
                 continue;
             }

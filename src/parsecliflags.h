@@ -1,7 +1,8 @@
-#include <string.h>
-#include <stdlib.h>
-#include <stdio.h>
-#include <errno.h>
+#ifndef _INC_EHDD_PARSECLIFLAGS_H
+#define _INC_EHDD_PARSECLIFLAGS_H
+
+// this file includes functions which deal with parsing of command line options passed to the program
+// only function 'parsecliflags' is used by 'main.c'
 
 char OPTION_USED = 0;
 
@@ -46,23 +47,20 @@ int handle_hyphen_options(char *opt_str) {
 }
 
 int parsecliflags(int argc, char **argv) {
+    // check for dependencies / root access
     if(pretcode("eject -h >/dev/null 2>/dev/null") == 127) {
-        // eject not found, return error code 1
         printf("\033[31mError:\033[37m ");
         printf("\033[1meject\033[0m: command not found.\n");
         return 1;
     } else if(pretcode("udisksctl help >/dev/null 2>/dev/null") == 127) {
-        // udisksctl not found, return error code 1
         printf("\033[31mError:\033[37m ");
         printf("\033[1mudisksctl\033[0m: command not found. Install udisks2 to install udisksctl.\n");
         return 1;
     } else if(geteuid() != 0) {
-        // not run as root, return error code 1
         printf("\033[31mError:\033[37m ");
         printf("\033[1m%s\033[0m not run as root. Run \033[1msudo %s\033[0m.\n", argv[0], argv[0]);
         return 1;
     } else if(argc < 2) {
-        // device name not provided, return error code 1
         printf("\033[0;31mError:\033[37m ");
         printf("Device name not provided.\n");
         return 1;
@@ -75,6 +73,10 @@ int parsecliflags(int argc, char **argv) {
     todo = DO_NOTHING;
 
     device_names_list.names = (char **)malloc(1*sizeof(char *));
+    if(check_dynamic_pointer((void*)device_names_list.names)) {
+        return 1;
+    }
+
     device_names_list.len = 0;
 
     while(++current_argv < argc) {
@@ -120,19 +122,16 @@ int parsecliflags(int argc, char **argv) {
                 return 1;
             }
         } else {
-            // argv[current_argv] is not an option
+            // argv[current_argv] is not an option (not starting with '-')
 
             device_names_list.len++;
 
             device_names_list.names = (char **)realloc(device_names_list.names, device_names_list.len*sizeof(char *));
-            if(!device_names_list.names) {
-                printf("\033[31mError:\033[37m ");
-                char *err = strerror(errno);
-                printf("Error while allocating memory for device names list: %s\n", err);
-                printf("\nThis error seems to be related with ehdd. \
-Please report this error at https://github.com/lakshayrohila/ehdd/issues.");
+
+            if(check_dynamic_pointer((void*)device_names_list.names)) {
                 return 1;
             }
+
             *(device_names_list.names+device_names_list.len-1) = argv[current_argv];
         }
     }
@@ -154,3 +153,5 @@ Please report this error at https://github.com/lakshayrohila/ehdd/issues.");
 
     return 0;
 }
+
+#endif

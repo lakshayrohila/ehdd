@@ -1,0 +1,6 @@
+The program ehdd uses musl-libc to statically link with,
+using the toolchain https://github.com/dimkr/toolchains.
+
+This directory contains musl's COPYRIGHT notice as received
+from https://git.musl-libc.org/cgit/musl/plain/COPYRIGHT at
+21 January 2023 UTC 4:22 pm.
