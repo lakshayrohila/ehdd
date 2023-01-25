@@ -10,11 +10,13 @@
 
 Perform these steps to install **ehdd** from its **already built binary** sources. These are available as **Releases** on [ehdd's Releases page](https://github.com/lakshayrohila/ehdd/releases).
 
-1. Get the latest `ehdd` from [ehdd's Latest Release page](https://github.com/lakshayrohila/ehdd/releases/latest).
+1. Get the latest `ehdd` from [ehdd's Latest Release page](https://github.com/lakshayrohila/ehdd/releases/latest):
    
-   Go to the **Assets** section here.
+   ![GitHub Release Screenshot](https://i.ibb.co/rfhXLQh/screenshot2.png)
    
-   ![image to be changed](https://example.com/)
+   Check the **Assets** section here:
+   
+   ![GitHub Release's Assets Section](https://i.ibb.co/ZVfX49V/screenshot1.png)
    
    **Explanation of each download option:**
    
