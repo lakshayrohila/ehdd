@@ -23,6 +23,6 @@ In case of bug reports / feature requests, please refer [Issues](https://github.
 ## Uninstalling ehdd
 
 1. Open up a terminal in this directory.
-2. Run `uninstall_ehdd.sh` in the terminal.
+2. Run `./uninstall_ehdd.sh` in the terminal.
 
 This will uninstall `ehdd` from your device.
